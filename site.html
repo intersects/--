@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>&nbsp;</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='logo' viewBox='3 307 991 494'%3E%3Cpath fill='%2386bd23' d='m207 312 11 5 6 3 16 10v2l4 2 46 41 6 5q10 14 13 31l2 6 1 9 7 21 1 9 2 6 1 9 10 28v2l15-11 9-5 8-6q9-4 19-5l8-2q11-4 24-5l49-8 10-1 5-1q30-6 59-1 15 3 28 12v2l4 1q14 13 22 31 4 11 3 21l2 6 1 9 2 6 5 36q2 12 1 24c-2 8-5 11-10 18-7 5-10 8-18 10q-10 1-20-2l-13-8c-5-7-8-10-10-18l-2-12-5-42-2-6-1-9-2-6-24 3-12 1-25 5-10 2-25 6c-30 7-30 7-41 7l-6 1-9 8-11 6-5 3-13 7-14 8-13 5q-10 1-20-2l-13-8c-5-7-8-10-10-18l-2-15-4-11-6-24-7-21-1-9-2-6-1-9q-2-10-8-19l-18-14v-2l-4-2-4-4q-11-10-25-14c-6-2-6-2-14-2-8 3-8 3-16 9q-12 17-16 36l-5 14-5 20-17 56-14 49-2 6-1 6-4 13-2 5 1 1 19 3 13 3 38 8 14 3 56 11 11 3h5l14 5 22 1 17-5 9-2 9-3 13-4 5-1 16-1q13 3 24 12l6 4 48 31 20 1 4 1h17q23 0 45 2l9 1 19 4 12 1 2 1-5 27-2 10-4 14h-2l-1 5q-5 10-13 18h-2l-1 3-4 1-2 4q-13 9-30 13-25 2-49-6a284 284 0 0 1-50-29l-34-21q-10-7-21-9-15 1-29 6l-7 2-46 16-85 29-23 7-6 2q-16 5-31 3h-6q-19 1-36-6t-31-18v-2l-4-2q-16-15-26-35-10-25-10-51l9-45 2-14 8-37 36-175 1-9q6-30 23-56l3-4h2l1-4 5-5h3l2-4q20-16 44-23c23-5 42-4 65 2m536 392h103q9 0 16 4c8 6 8 6 14 14q4 7 4 15l1 5 6 8 4 10q1 10-2 20l-8 13-10 7h-72l-187 1h-21c-6-1-6-1-11-4l-10-10-5-12 2-20 8-13c7-5 10-8 18-10h24l2-6q6-7 14-12l9-4h40q10 0 20-3l13-1zm223 26c8 2 11 5 18 10 5 7 8 10 10 18q1 10-2 20l-8 13-14 9h-23c-6-2-6-2-11-6q-7-8-12-17-2-9-1-19c2-8 5-11 10-18 11-9 19-11 33-10'/%3E%3C/svg%3E" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+
+        @font-face {
+            font-family: "Good Dog";
+            src: url("assets/fonts/gooddog.woff");
+        }
+
+        body {
+            font-family: "Good Dog";
+            position: relative; z-index: 1;
+            display: flex; justify-content: center;
+            min-height: 100vh; min-width: 100vw;
+            overflow-y: visible !important; overflow-x: hidden !important;
+            user-select: none; padding: 0; margin: 0;
+            -webkit-user-drag: none; background-color: black;
+
+            cursor: url("/assets/static/idle.cur"), default !important;
+        }
+        body:active, body:focus, body:focus-within, body:target, body:active * {
+            cursor: url("assets/static/active.cur"), default !important;
+        }
+        :any-link {
+            color: #8feeff !important; text-decoration: none !important;
+            cursor: url("assets/static/link.cur"), default !important;
+        }
+        * {
+            cursor: inherit !important;  
+            scrollbar-width: none; scrollbar-color: #ffffff #ffffff;
+        }
+        *::-webkit-scrollbar {width: 0px}
+        p {margin: 0}
+
+        .bg {
+            position: fixed; display: flex; justify-content: center;
+            min-height: 100vh; min-width: 100vw;
+            opacity: 0.25; filter: blur(4px);
+            background-image: url("assets/images/bg2.webp");
+            background-position: center center;
+            background-repeat: no-repeat; background-size: cover;
+            background-attachment: fixed; z-index: -9999;
+        }
+
+        .loading {
+            position: fixed; display: flex;
+            justify-content: center;
+            width: 100vw; height: 100vh; z-index: 65535;
+            background-color: rgba(0,0,0,0.5);
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.33));
+            transition: opacity 0.5s;
+        }
+        .loading svg {
+            width: 100px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,/*0.55*/0.33));
+            animation: rotate 2s linear infinite;
+        }
+        @keyframes rotate {
+            0% {transform: rotate(0deg)}
+            100% {transform: rotate(360deg)}
+        }
+
+        .page {
+            display: flex; flex-direction: column;
+            justify-content: center; text-align: center;
+            width: min(90vw, 700px); min-height: 90vh;
+            color: white; font-size: 1em;
+            -webkit-text-stroke: 0.175em black;
+            text-shadow: 0 0.15em 0 black;
+            paint-order: stroke fill;
+            margin-top: 1em; margin-bottom: 2em;
+        }
+
+        .logo {
+            width: 200px; margin: 0 auto; padding: 1em;
+            -webkit-filter: 
+                drop-shadow(2px 2px 0 black) drop-shadow(-2px 2px 0 black)
+                drop-shadow(2px -2px 0 black) drop-shadow(-2px -2px 0 white)
+                drop-shadow(0 .25em 0 black);
+            filter: 
+                drop-shadow(2px 2px 0 black) drop-shadow(-2px 2px 0 black)
+                drop-shadow(2px -2px 0 black) drop-shadow(-2px -2px 0 black)
+                drop-shadow(0 .25em 0 black);
+        }
+
+        .title {
+            font-size: 3em; padding-bottom: 0.25em;
+            -webkit-text-stroke: 0.15em black;
+            text-shadow: 0 0.15em 0 black;
+            paint-order: stroke fill;
+
+        }
+        .subtitle {
+            font-size: 1.5em; width: 100%;
+            -webkit-text-stroke: 0.15em black;
+            text-shadow: 0 0.15em 0 black;
+            paint-order: stroke fill;
+        }
+        .tiny {
+            font-size: 0.75em; padding-bottom: 0.25em;
+            color: rgb(223, 223, 223);
+            -webkit-text-stroke: 0.15em black;
+            text-shadow: 0 0.15em 0 black;
+            paint-order: stroke fill;
+        }
+
+        .badlogo {
+            font-family: Roboto, sans-serif;
+            color: #85C800;
+            font-size: 2em; font-weight: bold;
+            padding-top: 0.25em; padding-bottom: 0.75em;
+        }
+
+        /*//////////////////////////////////////////////////////////////////////*/
+
+        .sbutton {
+            display: flex; position: fixed; flex-direction: column;
+            align-items: center; justify-content: center;
+            cursor: pointer; background: none; z-index: 999;
+            border: none; padding: 0; bottom: 1em;
+        }
+        .sbutton img {height: 4em}
+
+        .sbutton span {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff; font-size: 1.65em;
+            -webkit-text-stroke: 0.15em black;
+            text-shadow: 0 0.15em 0 black;
+            paint-order: stroke fill;
+            pointer-events: none;
+            white-space: nowrap; user-select: none;
+        }
+
+        /*//////////////////////////////////////////////////////////////////////*/
+        
+        .games {
+            display: flex; flex-wrap: wrap;
+            width: min(90vw, 700px); height: auto;
+            gap: 0.375em; margin-top: 1em;
+            justify-content: center;
+        }
+        .game {
+            display: flex; flex-direction: column;
+            width: calc((100% - 3em) / 8);
+            min-width: 78.75px; max-width: 112.5px;
+        }
+        .header {
+            position: relative; display: flex;
+            justify-content: center; align-items: center;
+            padding-bottom: 0.375em;
+        }
+        .header[dev], .header[ptc], .header[rc], .header[rt] {filter: grayscale()}
+        .header:after {
+            position: fixed; font-size: 1.5em;
+            -webkit-text-stroke: 0.15em black;
+            text-shadow: 0 0.15em 0 black;
+            paint-order: stroke fill;
+            text-shadow: 0 0 6px #000, 0 0 12px #000,
+                         0 0 18px #000, 0 0 24px #000, 0 0 32px #000;
+        }
+        /* peak css you just don't get it */
+        .header[dev]:after {content: "Dev"}
+        .header[ptc]:after {content: "PTC"}
+        .header[rc]:after {content: "RC"}
+        .header[rt]:after {content: "RT"}
+
+        .header p {
+            position: absolute; text-align: center;
+            top: 60px; left: 50%;
+            transform: translateX(-50%);
+            margin: 0; z-index: 10; 
+            text-shadow: 0 0 6px #000, 0 0 12px #000,
+                         0 0 18px #000, 0 0 24px #000, 0 0 32px #000;
+            line-height: 1; transform-origin: center bottom;
+        }
+
+        .buttons {
+            display: flex; flex-wrap: wrap;
+            justify-content: center; align-items: center;
+            max-width: 100%; column-gap: 0.15em;
+        }
+        .buttons a {position: relative}
+        .buttons a p {
+            position: absolute; font-size: 0.675em;
+            top: 26.25px; left: 50%; white-space: pre;
+            transform: translateX(-50%);
+            margin: 0; z-index: 10; color: white;
+        }
+
+        .icon {
+            height: 75px; border-radius: 0.5625em;
+            justify-content: center; align-items: center
+        }
+        .button {height: 37.5px}
+
+    </style>
+</head>
+<body>
+
+    <audio class="click" src="/assets/audio/tap.mp3" preload="auto"></audio>
+    <div class="loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+            <path fill="#fbfbfb" d="M89 15h22l17 4 14 6 10 7 10 9 9 11 6 11 4 9 3 14 1 9v9l-3 19-5 14-8 13-11 12-9 8-17 9-21 5H89l-18-4-16-8-6-4-10-9-9-10-6-10-6-16-2-9-1-17 2-16 4-14 5-10 6-9 9-10 9-8 16-9 18-5Zm1 18-12 3-16 8-7 6v1l17 1 13 4 9 6 6 8 3 7v5l-4 1-9-6-4-1H74l-6 2-8 4-9 6-8 11-5 16-1 8 6 12 7 9h2l9-19 10-14 9-10 7-5 3-1h7l-1 5-7 6-4 8-2 6v13l4 14 7 9 6 5 8 4h8l14-5 10-7 4-4-21-9-8-6-7-7-5-10-2-8v-8l5-1 5 9 7 6 11 2 13-3 11-6 9-8 4-6v-8l-6-17-7-10-5-5-5 12-6 10-8 10-10 8-5 1-1-5 6-13 1-4V59l-4-10-6-9-8-7Z"/>
+            <path fill="#080808" d="M90 29h13l8 7 7 8 5 10 1 6v14l-4 11-3 5 8-6 8-9 7-12 5-16 4 1 9 10 8 15 4 13v9l-8 11-11 8-12 5-4 1h-15l-6-3-7-6-2-4 2 10 7 11 7 6 9 5 16 6 6 1-2 4-12 10-15 7-7 2h-9l-10-5-8-7-7-12-3-11v-15l4-10 4-6 3-4-10 8-9 10-9 15-8 20-4-2-9-10-8-16v-8l5-16 6-11 8-7 10-6 12-4h12l10 4 3 1-5-9-8-7-10-4-5-1H45l4-6 12-10 16-8 6-2Zm0 4-12 3-16 8-7 6v1l17 1 13 4 9 6 6 8 3 7v5l-4 1-9-6-4-1H74l-6 2-8 4-9 6-8 11-5 16-1 8 6 12 7 9h2l9-19 10-14 9-10 7-5 3-1h7l-1 5-7 6-4 8-2 6v13l4 14 7 9 6 5 8 4h8l14-5 10-7 4-4-21-9-8-6-7-7-5-10-2-8v-8l5-1 5 9 7 6 11 2 13-3 11-6 9-8 4-6v-8l-6-17-7-10-5-5-5 12-6 10-8 10-10 8-5 1-1-5 6-13 1-4V59l-4-10-6-9-8-7Z"/>
+            <path fill="#060606" d="M89 15h22l17 4 14 6 10 7 10 9 9 11 6 11 4 9 3 14 1 9v9l-3 19-5 14-8 13-11 12-9 8-17 9-21 5H89l-18-4-16-8-6-4-10-9-9-10-6-10-6-16-2-9-1-17 2-16 4-14 5-10 6-9 9-10 9-8 16-9 18-5Zm4 3-16 3-16 7-11 7-11 10-8 11-8 16-3 12-1 7v17l2 12 5 14 6 11 9 11 10 9 15 9 14 5 11 2h18l13-3 14-5 14-9 12-11 9-13 7-16 2-7 1-9V90l-3-15-7-16-8-11-8-9-12-9-17-8-12-3-7-1Z"/>
+          </svg>          
+    </div>
+    <div class="bg"></div>
+    <div class="overlay"></div>
+
+    <div class="page">
+
+        <span class="badlogo">ZeptoApp</span>
+        
+        <span>
+            zeptolab is openly affiliated with several nft/misc web3 companies
+            <sup>
+            <a href="https://x.com/ZeptoLab/status/1475416299341758466">[1]</a>
+            <a href="https://opensea.io/collection/omnombluefish">[2]</a>
+            <a href="https://www.animocabrands.com/the-sandbox-announces-partnership-with-cut-the-rope-creator-zeptolab">[3]</a>
+            <a href="https://vespasian.vc/">[4]</a>
+            </sup>
+            , an engagement botting platform
+            <sup><a href="https://mobirink.com/">[5]</a></sup>
+            (in the modern days this <a href="https://docs.google.com/spreadsheets/d/13QkL45K8uhiR5K9vf9SpjVYRfOQ8wV0x37vPkSt6310/edit?usp=sharing">no longer helps</a>), several ai game/code/asset publishers
+            <sup><a href="https://meliorgames.com/">[6]</a></sup>
+            and themselves are riding the ai wave over the past 2 years
+            <sup><a href="https://invidious.f5.si/search?q=Om+Nom+Songs+https%3A%2F%2Flnk.to%2FOmNomSongsON&page=1&date=none&type=video&duration=none&sort=views">[7]</a></sup>
+            <sup><a href="https://invidious.f5.si/watch?v=l7Yii7ox8pc#:~:text=%D0%B8%D0%B7%20Google%20%D0%B8-,Zeptolab,-%D1%81%D1%82%D0%B0%D1%80%D1%82%D0%B0%D0%BD%D1%83%D0%BB%D0%B8%20%D0%BD%D0%BE%D0%B2%D1%8B%D0%B9%20AI">[8]</a></sup>
+            <sup><a href="https://web.archive.org/web/20251208054723/https://play.google.com/store/apps/details?id=com.zeptolab.ctr.ads">[9]</a></sup>
+        </span>
+
+        <span>this company has not lived up to any of its ethics since 2019 and are only held up by projects not made by them. you should not give them any of your money.</span>
+        <br>
+        <span>..this crashout is completely unrelated, these were just found on a random wednesday after they were nearly found 2 years prior</span>
+        <br>
+        <a class="tiny">68 apps total <span style="color:#e7e7e7">(145 <span style="color:rgb(167, 236, 167)">apk</span> / 139 <span style="color:rgb(199, 198, 198)">ipa</span>  files)</span>
+        <div class="games"></div>
+        <a class="tiny">all files are backed up, if any of the links above stop working then i can replace them</a>
+        
+        <br><br>
+        <a class="title">other stuff</a>
+        <a class="subtitle">testflight scrapes</a>
+        <a>roughly at this time (20th dec) two years ago it was confirmed from a particular corgi's question on twitter that it was a non-issue that these got found. it is unknown where that corgi is now.</a>
+        <a class="tiny">reuploads in testflight bunker from @TreasureAndCrow and @EveryOOC ^^</a>
+        <a>dreams</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/xeSHpfYQRWgMjVMOArMn.ipa">8c99f3de043157a9403e8cca919a519b.ipa</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/KjDkiOFGEXtCpLnuCrYm.ipa">09354196a93e3eaae4711cd96350ab92.ipa</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/gbytJydMXlOmpfFvFDh.ipa">8204193686492157d27b37a4ac3a0d50.ipa</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/WeWDxZJMXhSmDxEOPteH.ipa">6624ec76f54e77925b71a048ca1ef908.ipa</a>
+        <a>king of thieves</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/cTDcrxsDVDcMiuMuMAfy.ipa">08d6867ce60138244391e79dd650f18a.ipa</a>
+        <a>ctr time travel</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/wqDrBJqGZkVLdOSfsdcR.ipa">94ca6c772af660be444a82082abc4e4f.ipa</a>
+        <a>pudding monsters</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/coMpbacldbQEUuEYfSl.ipa">f1daaf36c8f377fd361e7bc02faa3058.ipa</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/PIyPLVETIZFpRkPMxnTz.ipa">9547f86923147c43d6599b18c07b896b.ipa</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/AiMkzdOzJUwuadpCfZfo.ipa">a1ce6235ff43e580cc1b4f0878bdf1b5.ipa</a>
+        <a>cut the rope</a>
+        <a class="tiny" href="https://fileditchfiles.me/file.php?f=/s24/jlfMFgjqDOxPcbhOqNKW.ipa">9db4266fb531972b34423d93e0033b1d.ipa</a>
+
+        <br>
+        <a class="subtitle">misc</a>
+        <a href="https://ajlsspp-cnd.jinkejoy.com/">small bullet echo stuff bucket</a>
+        <a href="https://apkcombo.com/developer/ZeptoLab/?page=2">deleted apps</a>
+        <a href="http://web.archive.org/web/20250109144618/https://zeptoapp.zeptodev.com/shared/BD28995D-D4CE-4F0E-8CE5-CB80A7A8043B/Cut_the_Rope__Origins_RC_Production_Enterprise_458.html">ctr origins rc build shared on a different path</a>
+        <span>fofa search - <a href="https://en.fofa.info/result?qbase64=InplcHRvZGV2Ig%3D%3D">"zeptodev"</a> / <a href="https://en.fofa.info/result?qbase64=ZG9tYWluPSJ6ZXB0b2xhYi5jb20i">domain="zeptolab.com"</a></span>
+        <br>
+        <span>holdings company - <a href="https://offshoreleaks.icij.org/nodes/240371247">icij</a> • <a href="https://www.datocapital.vg/companies/Zeptolab-Holdings-Ltd.html">datocapital</a></span>
+        <span>financial statements - <a href="https://fileditchfiles.me/file.php?f=/s25/PAxqQkmqVvmlYnpqiZvr.zip">limited (zip)</a> • <a href="https://fileditchfiles.me/file.php?f=/s25/QGSwehtVTLRROfdwIQGf.zip">solutions (zip)</a></span>
+        
+    </div>
+
+    <script>
+
+        // loading
+        window.addEventListener("load", function() {
+            var loading = document.querySelector(".loading");
+            if (loading) {
+                loading.style.opacity = "0";
+                setTimeout(function() {
+                    if (loading.parentNode) loading.parentNode.removeChild(loading);
+                }, 500);
+            }
+        });
+
+        // spritesheet logic
+        const spritesheetmanager = {
+            sheets: {},
+            async load(name, jsonpath, imagepath) {
+                if (this.sheets[name]) {
+                    return this.sheets[name];
+                }
+                try {
+                    const response = await fetch(jsonpath);
+                    const data = await response.json();
+
+                    const img = new Image();
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = reject;
+                        img.src = imagepath;
+                    });
+
+                    let frames = {};
+                    if (data.frames && Array.isArray(data.frames)) {
+                        for (let i = 0; i < data.frames.length; i++) {
+                            frames[data.frames[i].filename] = data.frames[i];
+                        }
+                    }
+
+                    this.sheets[name] = {
+                        image: imagepath,
+                        frames: frames,
+                        width: img.width,
+                        height: img.height
+                    };
+                    return this.sheets[name];
+                } catch (err) {
+                    console.error(`failed to load spritesheet ${name}:`, err);
+                    this.sheets[name] = {
+                        image: imagepath,
+                        frames: {},
+                        width: 0,
+                        height: 0
+                    };
+                    return this.sheets[name];
+                }
+            },
+            setcssvars(name) {
+                const sheet = this.sheets[name];
+                if (!sheet) return;
+                document.documentElement.style.setProperty(`--sprite-${name}`, `url('${sheet.image}')`);
+                document.documentElement.style.setProperty(`--sprite-${name}-width`, `${sheet.width}px`);
+                document.documentElement.style.setProperty(`--sprite-${name}-height`, `${sheet.height}px`);
+            },
+            createsprite(classname, sheetname, filename, width, height) {
+                const sheet = this.sheets[sheetname];
+                if (!sheet || !sheet.frames[filename]) {
+                    console.warn(`sprite not found: ${filename} in ${sheetname}`);
+                    const placeholder = document.createElement("div");
+                    placeholder.className = classname;
+                    placeholder.style.width = width + "px";
+                    placeholder.style.height = height + "px";
+                    placeholder.style.backgroundColor = "rgba(255,255,255,0.1)";
+                    return placeholder;
+                }
+                const frame = sheet.frames[filename];
+                const f = frame.frame;
+                const scale = width / f.w;
+
+                const div = document.createElement("div");
+                div.className = classname;
+                div.style.display = "inline-block";
+                div.style.width = width + "px";
+                div.style.height = height + "px";
+                div.style.backgroundImage = `var(--sprite-${sheetname})`;
+                div.style.backgroundPosition = `-${f.x * scale}px -${f.y * scale}px`;
+                div.style.backgroundSize = `calc(var(--sprite-${sheetname}-width) * ${scale}) calc(var(--sprite-${sheetname}-height) * ${scale})`;
+                div.style.backgroundRepeat = "no-repeat";
+
+                div.dataset.framex = f.x;
+                div.dataset.framey = f.y;
+                div.dataset.framew = f.w;
+                div.dataset.frameh = f.h;
+                div.dataset.sheetname = sheetname;
+                div.dataset.sheetwidth = sheet.width;
+                div.dataset.sheetheight = sheet.height;
+                div.dataset.scale = scale;
+
+                return div;
+            }
+        };
+
+        /*//////////////////////////////////////////////////////////////////////*/
+
+        // dl icon map
+        const buttonmap = [
+            {domain: "mega.nz", icon: "mega.png"},
+            {domain: "fileditchfiles.me", icon: "fileditch.png"},
+            {domain: "drive.proton.me", icon: "protondrive.png"},
+        ];
+        function autobutton(url) {
+            for (let i = 0; i < buttonmap.length; i++) {
+                if (url.includes(buttonmap[i].domain)) return buttonmap[i].icon;
+            }
+            return "other.png";
+        }
+        let gameobserver;
+        function creategameobserver() {
+            if ('IntersectionObserver' in window) {
+                gameobserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            if (!el.dataset.loaded) {
+                                el.dataset.loaded = "true";
+                                loadgameicons(el).catch((err) => {
+                                    console.error("error loading game icons:", err);
+                                });
+                                gameobserver.unobserve(el);
+                            }
+                        }
+                    });
+                }, {
+                    rootMargin: '200px'
+                });
+            }
+        }
+
+        // icon sprites
+        async function loadgameicons(gameel) {
+            const header = gameel.querySelector(".header");
+            const buttons = gameel.querySelector(".buttons");
+            const gdata = gameel._gameData;
+            if (!gdata || !header || !buttons) return;
+
+            await spritesheetmanager.load("gameicons", "/assets/images/sheets/gameicons.json", "/assets/images/sheets/gameicons.webp");
+            await spritesheetmanager.load("dlbuttons", "/assets/images/sheets/dlbuttons.json", "/assets/images/sheets/dlbuttons.png");
+
+            spritesheetmanager.setcssvars("gameicons");
+            spritesheetmanager.setcssvars("dlbuttons");
+
+            for (let j = 0; j < gdata.icons.length; j++) {
+                const iconsrc = gdata.icons[j];
+                const iconelement = spritesheetmanager.createsprite("icon", "gameicons", iconsrc, 75, 75);
+                header.appendChild(iconelement);
+            }
+
+            for (let j = 0; j < gdata.downloads.length; j++) {
+                const d = gdata.downloads[j];
+                const link = document.createElement("a");
+                link.href = d.url;
+
+                const buttoncustom = d.button || autobutton(d.url);
+                const buttonelement = spritesheetmanager.createsprite("button clickable", "dlbuttons", buttoncustom, 37.5, 37.5);
+                link.appendChild(buttonelement);
+
+                if (d.label) {
+                    const label = document.createElement("p");
+                    label.textContent = d.label;
+                    link.appendChild(label);
+                }
+                buttons.appendChild(link);
+            }
+            
+            // Apply icon positioning after icons are loaded
+            applyicons(gameel);
+        }
+
+        // parse data from games.json
+        async function loadjson() {
+            const response = await fetch("/games.json");
+            const games = await response.json();
+            const container = document.querySelector(".games");
+            const frag = document.createDocumentFragment();
+
+            creategameobserver();
+
+            for (let i = 0; i < games.length; i++) {
+                const game = games[i];
+                const gamediv = document.createElement("div");
+                gamediv.className = "game";
+                gamediv._gameData = game;
+
+                const header = document.createElement("div");
+                header.className = "header";
+                if (game.headerAttr) header.setAttribute(game.headerAttr, "");
+
+                const title = document.createElement("p");
+                title.textContent = game.name;
+                if (game.fontSize) title.style.fontSize = game.fontSize;
+                header.appendChild(title);
+
+                const buttons = document.createElement("div");
+                buttons.className = "buttons";
+
+                gamediv.appendChild(header);
+                gamediv.appendChild(buttons);
+                frag.appendChild(gamediv);
+
+                if (gameobserver) {
+                    gameobserver.observe(gamediv);
+                } else {
+                    loadgameicons(gamediv);
+                }
+            }
+
+            container.appendChild(frag);
+
+            const allgames = container.querySelectorAll(".game");
+            const gamestoload = Math.min(20, allgames.length);
+            for (let i = 0; i < gamestoload; i++) {
+                if (!allgames[i].dataset.loaded) {
+                    allgames[i].dataset.loaded = "true";
+                    loadgameicons(allgames[i]).catch((err) => {
+                        console.error("failed to load game icons for game", i, err);
+                    });
+                    if (gameobserver) gameobserver.unobserve(allgames[i]);
+                }
+            }
+
+            container.addEventListener("click", function(e) {
+                let el = e.target;
+                while (el && el !== container) {
+                    if (el.classList && el.classList.contains("clickable")) {
+                        const audio = document.querySelector(".click");
+                        if (audio) {
+                            audio.currentTime = 0;
+                            audio.play();
+                        }
+                        break;
+                    }
+                    el = el.parentNode;
+                }
+            });
+
+            setTimeout(applyicons, 200);
+        }
+        loadjson();
+
+        function applyicons(specificGame) {
+            const games = specificGame ? [specificGame] : document.querySelectorAll(".game");
+            for (let i = 0; i < games.length; i++) {
+                const game = games[i];
+                const header = game.querySelector(".header");
+                if (!header) continue;
+
+                // Only get icons that are direct children of header (not already in an iconbox)
+                const allIcons = header.querySelectorAll(".icon");
+                const icons = Array.from(allIcons).filter(icon => icon.parentNode === header);
+                const icount = icons.length;
+                if (icount >= 2 && icount <= 4) {
+                    const iconbox = document.createElement("div");
+                    iconbox.style.cssText = "position: relative; width: 75px; height: 75px; display: block";
+
+                    for (let j = 0; j < icount; j++) {
+                        const icon = icons[j];
+                        const newicon = icon.cloneNode(true);
+                        const iconsize = (icount === 3 || icount === 4) ? "37.5px" : "52.5px";
+                        const newsize = parseFloat(iconsize);
+                        const origsize = 75;
+                        const scale = newsize / origsize;
+
+                        const framex = parseFloat(icon.dataset.framex || 0);
+                        const framey = parseFloat(icon.dataset.framey || 0);
+                        const sheetname = icon.dataset.sheetname;
+                        const sheetwidth = parseFloat(icon.dataset.sheetwidth || 0);
+                        const sheetheight = parseFloat(icon.dataset.sheetheight || 0);
+                        const origscale = parseFloat(icon.dataset.scale || 1);
+
+                        if (sheetname && sheetwidth && sheetheight) {
+                            const varname = `--sprite-${sheetname}`;
+                            newicon.style.backgroundImage = `var(${varname})`;
+                            newicon.style.backgroundPosition = `-${framex * origscale * scale}px -${framey * origscale * scale}px`;
+                            newicon.style.backgroundSize = `${sheetwidth * origscale * scale}px ${sheetheight * origscale * scale}px`;
+                        } else {
+                            const bgpos = icon.style.backgroundPosition || "0px 0px";
+                            const bgsize = icon.style.backgroundSize || "0px 0px";
+                            const bgposm = bgpos.match(/(-?\d+(?:\.\d+)?)px\s+(-?\d+(?:\.\d+)?)px/);
+                            if (bgposm) {
+                                const x = parseFloat(bgposm[1]) * scale;
+                                const y = parseFloat(bgposm[2]) * scale;
+                                newicon.style.backgroundPosition = x + "px " + y + "px";
+                            }
+                            const bgsizem = bgsize.match(/(\d+(?:\.\d+)?)px\s+(\d+(?:\.\d+)?)px/);
+                            if (bgsizem) {
+                                const w = parseFloat(bgsizem[1]) * scale;
+                                const h = parseFloat(bgsizem[2]) * scale;
+                                newicon.style.backgroundSize = w + "px " + h + "px";
+                            }
+                        }
+
+                        newicon.style.width = iconsize;
+                        newicon.style.height = iconsize;
+                        newicon.style.position = "absolute";
+                        newicon.style.display = "block";
+                        newicon.style.mixBlendMode = "soft-light";
+
+                        switch (icount) {
+                            case 2:
+                                if (j === 0) { newicon.style.top = "0"; newicon.style.left = "0"; }
+                                else { newicon.style.bottom = "0"; newicon.style.right = "0"; }
+                                break;
+                            case 3:
+                                if (j === 0) { newicon.style.top = "0"; newicon.style.left = "0"; }
+                                else if (j === 1) { newicon.style.bottom = "0"; newicon.style.right = "0"; }
+                                else { newicon.style.top = "50%"; newicon.style.left = "50%"; newicon.style.transform = "translate(-50%, -50%)"; }
+                                break;
+                            case 4:
+                                if (j === 0) { newicon.style.top = "0"; newicon.style.left = "0"; }
+                                else if (j === 1) { newicon.style.top = "0"; newicon.style.right = "0"; }
+                                else if (j === 2) { newicon.style.bottom = "0"; newicon.style.left = "0"; }
+                                else { newicon.style.bottom = "0"; newicon.style.right = "0"; }
+                                break;
+                        }
+                        iconbox.appendChild(newicon);
+                    }
+                    for (let j = icons.length - 1; j >= 0; j--) {
+                        const remicon = icons[j];
+                        if (remicon.parentNode === header) {
+                            header.removeChild(remicon);
+                        }
+                    }
+                    header.appendChild(iconbox);
+                }
+            }
+        }
+
+        // text auto-fit
+        function fixtext() {
+            const titles = document.querySelectorAll(".game .header > p");
+            for (let i = 0; i < titles.length; i++) { resizefont(titles[i], 75); }
+        }
+        function resizefont(el, maxwidth) {
+            const cs = getComputedStyle(el);
+            const origfont = parseFloat(cs.fontSize);
+            const minfont = 9; const goodmaxw = maxwidth - 2;
+            el.style.fontSize = origfont + "px";
+            el.style.whiteSpace = "nowrap";
+            if (el.scrollWidth <= goodmaxw) return;
+            let left = minfont, right = origfont, best = minfont;
+            while (left <= right) {
+                const mid = Math.round((left + right) / 2 * 10) / 10;
+                el.style.fontSize = mid + "px";
+                if (el.scrollWidth <= goodmaxw) { best = mid; left = mid + 0.1; }
+                else { right = mid - 0.1; }
+            }
+            el.style.fontSize = best + "px";
+            const fdelta = origfont - best;
+            const currtop = parseFloat(getComputedStyle(el).top) || 0;
+            el.style.top = (currtop + fdelta) + "px";
+        }
+
+        let fixtimer;
+        function debouncefixtext(delay) {
+            clearTimeout(fixtimer);
+            fixtimer = setTimeout(fixtext, delay);
+        }
+        document.addEventListener("DOMContentLoaded", function() { setTimeout(fixtext, 100); });
+        window.addEventListener("resize", function() { debouncefixtext(80); });
+        window.addEventListener("load", function() { setTimeout(fixtext, 200); });
+
+
+    </script>
+</body>
+</html>

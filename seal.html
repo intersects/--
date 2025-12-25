@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>seal</title>
+    <style>
+        body {
+            padding: 0; margin: 0;
+            width: 100%; height: 100%;
+            background: black;
+            overflow: hidden;
+        }
+        .introvideo {
+            position: fixed; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            width: 100vw; height: 100vh;
+            background: black; z-index: 1;
+            overflow: hidden;
+        }
+        .introvideo video {
+            width: 100vw; height: 100vh;
+            object-fit: cover; background: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="introvideooverlay" class="introvideo" aria-hidden="true">
+        <video id="introvideoplayer" preload="auto" playsinline></video>
+    </div>
+
+    <script>
+        (() => {
+            const overlay = document.getElementById("introvideooverlay");
+            const player = document.getElementById("introvideoplayer");
+            if (!overlay || !player) return;
+
+            const src = "assets/videos/evilfuckingcreature.mp4";
+            player.src = src;
+            player.loop = false;
+            player.controls = false;
+            player.playsInline = true;
+            player.setAttribute("playsinline", "");
+            player.setAttribute("webkit-playsinline", "");
+
+            const ensureplay = () => {
+                player.muted = false;
+                const attempt = player.play();
+                if (attempt && attempt.catch) {
+                    attempt.catch(() => {
+                        player.muted = true;
+                        player.play().catch(() => {});
+                    });
+                }
+            }; ensureplay();
+
+            const tryunmute = () => {
+                if (!player.muted) return;
+                player.muted = false;
+                const p = player.play();
+                if (p && p.catch) {
+                    p.catch(() => { player.muted = true; });
+                }
+            };
+            ["click", "touchstart", "keydown"].forEach(ev => {
+                document.addEventListener(ev, tryunmute, { once: true });
+            });
+
+            let slowing = false;
+            let rafid;
+
+            const clampnearend = () => {
+                const dur = player.duration;
+                if (!dur || !isFinite(dur)) return;
+                const maxtime = Math.max(0, dur - 0.05);
+                if (player.currentTime > maxtime) player.currentTime = maxtime;
+            };
+
+            const slowdowntick = () => {
+                if (!slowing) return;
+                const dur = player.duration;
+                if (!dur || !isFinite(dur)) {
+                    rafid = requestAnimationFrame(slowdowntick);
+                    return;
+                }
+                const remaining = Math.max(0, dur - player.currentTime);
+                const fraction = Math.min(1, remaining / 0.5);
+                const rate = Math.max(0.02, Math.pow(fraction, 2));
+                player.playbackRate = rate;
+                clampnearend();
+                rafid = requestAnimationFrame(slowdowntick);
+            };
+
+            const watchforslowdown = () => {
+                if (slowing) return;
+                const dur = player.duration;
+                if (!dur || !isFinite(dur)) {
+                    rafid = requestAnimationFrame(watchforslowdown);
+                    return;
+                }
+                if (dur - player.currentTime <= 0.5) {
+                    slowing = true;
+                    slowdowntick();
+                } else {
+                    rafid = requestAnimationFrame(watchforslowdown);
+                }
+            };
+            rafid = requestAnimationFrame(watchforslowdown);
+
+            player.addEventListener("ended", (e) => {
+                e.preventDefault();
+                slowing = true;
+                clampnearend();
+                player.play();
+            });
+            player.addEventListener("error", (err) => {
+                console.error("FUCK", err);
+            });
+            window.addEventListener("beforeunload", () => {
+                cancelAnimationFrame(rafid);
+                player.pause();
+            });
+        })();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Quiz!</title>
+    <link rel="shortcut icon" href="data:image/png;base64,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" />
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preload" href="/assets/fonts/8bit.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="/assets/fonts/battlebyfontPerson23.ttf" as="font" type="font/ttf" crossorigin>
+
+    <style>
+
+        @font-face {
+            font-family: "8bit";
+            src: url("/assets/fonts/8bit.ttf");
+        }
+        @font-face {
+            font-family: "Battle";
+            src: url("/assets/fonts/battlebyfontPerson23.ttf");
+        }
+
+        body {
+            position: relative; z-index: 1;
+            display: flex; justify-content: center;
+            min-height: 100vh; min-width: 100vw;
+            overflow-y: visible !important; overflow-x: hidden !important;
+            user-select: none; padding: 0; margin: 0;
+            -webkit-user-drag: none;
+
+            background-color: black;
+            background-position: center center;
+            background-repeat: no-repeat; background-size: cover;
+            background-attachment: fixed;
+
+            image-rendering: pixelated !important; 
+            image-rendering: crisp-edges !important
+        }
+        * {
+            cursor: inherit !important;  
+            scrollbar-width: none; scrollbar-color: #ffffff #ffffff;
+        }
+        *::-webkit-scrollbar {width: 0px}
+
+        p {margin: 0}
+
+        .loading {
+            position: fixed; display: flex;
+            justify-content: center;
+            width: 100vw; height: 100vh; z-index: 65535;
+            background-color: rgba(0,0,0,0.5);
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.33));
+            transition: opacity 0.5s;
+        }
+        .loading svg {
+            width: 100px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,/*0.55*/0.33));
+            animation: rotate 2s linear infinite;
+        }
+        @keyframes rotate {
+            0% {transform: rotate(0deg)}
+            100% {transform: rotate(360deg)}
+        }
+        @keyframes scroll {
+            0% {background-position: 0 0;}
+            100% {background-position: -15em 15em}
+        }
+        
+
+        /*//////////////////////////////////////////////////////////////////////*/
+
+        .startoverlay {
+            display: flex; position: fixed;
+            align-items: center; justify-content: center;
+            width: 100vw; height: 100vh;
+            background-color: black;
+            z-index: 999999;
+        }
+        .overlaycontent {
+            display: flex; position: fixed;
+            align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        .overlaycontent img {
+            width: 10em;
+        }
+        .overlaycontent a {
+            display: flex; position: fixed;
+            color: rgb(61, 61, 61);
+            font-family: cursive; font-size: 1.5em;
+            bottom: 0;
+        }
+
+        .page {
+            position: fixed; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            top: 50%; left: 50%; aspect-ratio: 4 / 3; 
+            width: min(calc(100vw - 32px), calc((100vh - 32px) * 4 / 3), 80vw);
+            height: min(calc(100vh - 32px), calc((100vw - 32px) * 3 / 4), calc(0.75 * 80vw));
+            max-width: calc(100vw - 32px); max-height: calc(100vh - 32px);
+            transform: translate(-50%, -50%);
+            outline: 2px white solid; box-sizing: border-box;
+            font-size: calc(0.5 * (min(calc(100vw - 32px), calc((100vh - 32px) * 4 / 3), 80vw) / 32));
+            text-align: center;
+            
+            background-image: url("/assets/images/quiz/ui/startile.gif");
+            background-repeat: repeat; background-size: 15em;
+            background-position: 0 0;
+            animation: scroll 2s linear infinite;
+        }
+        .room {
+            width: 100%; height: 100%;
+            background-image: url("/assets/images/quiz/ui/quizroom.png");
+            background-size: cover;
+        }
+
+        .screen {
+            display: flex; position: absolute;
+            top: 13%; left: 19.9%; overflow: hidden !important;
+            width: 60%; height: 53.5%;
+            background-color: #00a2e8;
+            box-sizing: border-box; justify-content: center;
+
+            font-family: "8bit"; font-size: 2.4em;
+            color: white; text-transform: uppercase;
+            line-height: 0.8;
+        }
+        .vignette {
+            display: flex; position: absolute;
+            z-index: 10000000; overflow: hidden !important;
+            width: 100%; height: 100%;
+            box-shadow: 0 0 0 6em rgba(0,0,0,0) inset,
+                        0 0 4em 0px rgba(0,0,0,0.7) inset;
+            pointer-events: none;
+        }
+
+        .question {
+            width: 100%; height: 35%;
+            /* due to browser miscalculations setting this to 33.3% causes it to be misplaced on some resolutions */
+            background-image: url("/assets/images/quiz/ui/quizquestion.png");
+            background-size: contain; background-repeat: no-repeat;
+            background-position: center;
+            display: flex; justify-content: center;
+        }
+        .question a {
+            overflow: hidden; text-overflow: ellipsis;
+            width: 100%; max-height: calc(3 * 0.8em * 0.9);
+            text-align: left; line-height: 0.75;
+            padding-left: 4%; padding-top: 5%;
+            white-space: pre-wrap;
+        }
+
+        .image {
+            width: 5em; height: 5em; bottom: 8em;
+            margin-left: 11em;
+            position: fixed; object-fit: contain !important;
+            display: none;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            transform-origin: bottom left;
+            z-index: 50;
+        }
+
+        /*//////////////////////////////////////////////////////////////////////*/
+        
+        /* do not add overflow: hidden, this breaks the heart */
+        .answers {
+            width: auto; min-width: 40%;
+            left: 50%; transform: translateX(-50%); bottom: 8em;
+            background-size: contain; background-repeat: no-repeat;
+            background-position: center; z-index: 1000;
+            position: fixed; display: none; 
+            flex-direction: column; align-items: flex-start;
+            font-size: calc(1.25 * (min(calc(100vw - 32px), calc((100vh - 32px) * 4 / 3), 80vw) / 32));
+            max-width: calc(80% - 2em);
+        }
+        .answers a {
+            text-overflow: ellipsis; white-space: nowrap;
+            width: auto; max-width: 67%;
+            text-align: left; line-height: 1;
+            display: flex; align-items: center;
+            position: relative; cursor: pointer;
+            z-index: 100;
+        }
+        .answers a:hover {color: yellow}
+        .answers.disabled a:hover {color: inherit}
+        .answers a .heart {
+            height: 0.75em; left: -1em; width: auto;
+            position: absolute; display: none;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+        }
+        .answers a:hover .heart {display: block}
+        .answers a.selected .heart {display: block}
+        .answers a .overlay {
+            position: absolute;
+            left: -1em; 
+            height: 0.75em; width: auto;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
+            display: none; z-index: 10;
+        }
+        .answers a.show-overlay .overlay {
+            display: block;
+        }
+        .answers a.correct {color: yellow}
+        .answers a.incorrect {color: red}
+        .answers.flicker a {animation: flicker 0.5s infinite}
+        @keyframes flicker {
+            0%, 49%, 100% {opacity: 1}
+            50%, 99% {opacity: 0}
+        }
+
+        /*//////////////////////////////////////////////////////////////////////*/
+
+        .results {
+            display: none; position: absolute;
+            justify-content: center;
+            width: 100%; height: 100%;
+            background-color: #00a2e8; z-index: 1000;
+        }
+        .results a {
+            display: none; position: absolute;
+            bottom: 1em;
+        }
+        .resultstext {
+            display: none; position: absolute;
+            height: 30%; top: 1em;
+        }
+        .resultsline {
+            display: none; position: absolute;
+            justify-content: center; align-items: center;
+            width: 100%; height: 10%;
+            top: 4.5em;
+            background-color: white;
+        }
+        .resultsline img {
+            height: 75%; padding: 2px;
+            filter: brightness(2);
+            display: none;
+        }
+
+        /*//////////////////////////////////////////////////////////////////////*/
+
+        .tenna {
+            display: none; position: fixed;
+            height: 25em; z-index: 99999999;
+            bottom: 6em; right: 3em;
+            transform-origin: center center;
+            transform: scaleY(1.0);
+        }
+        .tenna.visible {display: flex}
+        .tenna.falling {transition: bottom 2s ease-in}
+        .tenna * {image-rendering: pixelated !important; image-rendering: crisp-edges !important}
+        .tenna img {height: 100%; width: auto}
+        .tenna.squish {transform: scaleY(1.2)}
+        .tenna.squishback {transform: scaleY(1.0)}
+        
+        .tennaspeech {
+            position: fixed; z-index: 999999998;
+            bottom: 2em; right: 3em;
+            display: none; flex-direction: column;
+        }
+        /* Buble */
+        .tennaspeechbubble {
+            position: relative; z-index: 999999998;
+            background-color: white; border: 0.12em solid black;
+            border-radius: 1em; padding: 0.5em;
+            padding-bottom: calc(0.5em + 3.5em - 0.12em); /* ~55px and ~2px translated to em */
+            box-sizing: border-box; overflow: visible;
+            width: auto; height: auto;
+        }
+        .tennaspeechbubble::before {
+            content: ""; position: absolute;
+            top: -3.3em; left: 1.25em;
+            width: 2.94em; height: 3.44em;
+            background-image: url("/assets/images/quiz/ui/balloontriangle.png");
+            background-size: contain; background-repeat: no-repeat;
+            z-index: 1;
+        }
+        .tennaspeechtext {
+            z-index: 999999998;
+            font-family: "Battle"; color: black;
+            font-size: 1.2em; line-height: 1.2;
+            word-wrap: break-word; text-align: left;
+        }
+
+    </style>
+</head>
+<body>
+
+    <audio class="click" src="/assets/audio/tap.mp3" preload="auto"></audio>
+    <audio class="txt" src="/assets/audio/txt.opus" preload="auto"></audio>
+    <audio class="tennavoice" preload="auto"></audio>
+    <audio class="select" src="/assets/audio/select.mp3" preload="auto"></audio>
+    
+    <div class="loading">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+            <path fill="#fbfbfb" d="M89 15h22l17 4 14 6 10 7 10 9 9 11 6 11 4 9 3 14 1 9v9l-3 19-5 14-8 13-11 12-9 8-17 9-21 5H89l-18-4-16-8-6-4-10-9-9-10-6-10-6-16-2-9-1-17 2-16 4-14 5-10 6-9 9-10 9-8 16-9 18-5Zm1 18-12 3-16 8-7 6v1l17 1 13 4 9 6 6 8 3 7v5l-4 1-9-6-4-1H74l-6 2-8 4-9 6-8 11-5 16-1 8 6 12 7 9h2l9-19 10-14 9-10 7-5 3-1h7l-1 5-7 6-4 8-2 6v13l4 14 7 9 6 5 8 4h8l14-5 10-7 4-4-21-9-8-6-7-7-5-10-2-8v-8l5-1 5 9 7 6 11 2 13-3 11-6 9-8 4-6v-8l-6-17-7-10-5-5-5 12-6 10-8 10-10 8-5 1-1-5 6-13 1-4V59l-4-10-6-9-8-7Z"/>
+            <path fill="#080808" d="M90 29h13l8 7 7 8 5 10 1 6v14l-4 11-3 5 8-6 8-9 7-12 5-16 4 1 9 10 8 15 4 13v9l-8 11-11 8-12 5-4 1h-15l-6-3-7-6-2-4 2 10 7 11 7 6 9 5 16 6 6 1-2 4-12 10-15 7-7 2h-9l-10-5-8-7-7-12-3-11v-15l4-10 4-6 3-4-10 8-9 10-9 15-8 20-4-2-9-10-8-16v-8l5-16 6-11 8-7 10-6 12-4h12l10 4 3 1-5-9-8-7-10-4-5-1H45l4-6 12-10 16-8 6-2Zm0 4-12 3-16 8-7 6v1l17 1 13 4 9 6 6 8 3 7v5l-4 1-9-6-4-1H74l-6 2-8 4-9 6-8 11-5 16-1 8 6 12 7 9h2l9-19 10-14 9-10 7-5 3-1h7l-1 5-7 6-4 8-2 6v13l4 14 7 9 6 5 8 4h8l14-5 10-7 4-4-21-9-8-6-7-7-5-10-2-8v-8l5-1 5 9 7 6 11 2 13-3 11-6 9-8 4-6v-8l-6-17-7-10-5-5-5 12-6 10-8 10-10 8-5 1-1-5 6-13 1-4V59l-4-10-6-9-8-7Z"/>
+            <path fill="#060606" d="M89 15h22l17 4 14 6 10 7 10 9 9 11 6 11 4 9 3 14 1 9v9l-3 19-5 14-8 13-11 12-9 8-17 9-21 5H89l-18-4-16-8-6-4-10-9-9-10-6-10-6-16-2-9-1-17 2-16 4-14 5-10 6-9 9-10 9-8 16-9 18-5Zm4 3-16 3-16 7-11 7-11 10-8 11-8 16-3 12-1 7v17l2 12 5 14 6 11 9 11 10 9 15 9 14 5 11 2h18l13-3 14-5 14-9 12-11 9-13 7-16 2-7 1-9V90l-3-15-7-16-8-11-8-9-12-9-17-8-12-3-7-1Z"/>
+          </svg>          
+    </div>
+
+    <div class="page">
+        <div class="startoverlay">
+            <div class="overlaycontent">
+                <img src="/assets/images/quiz/quizzler.png" draggable="false">
+                <a>(click the quizzler)</a>
+            </div>
+        </div>
+        <div class="room">
+            <div class="screen">
+                <div class="vignette"></div>
+
+                <div class="question">
+                    <a></a>
+                </div>
+                <div class="answers"></div>
+                <img class="image" src="">
+
+                <div class="results">
+                    <img class="resultstext" src="/assets/images/quiz/ui/quizresults.png">
+                    <div class="resultsline"></div>
+                    <a>AWESOME</a>
+                </div>
+            </div>
+
+            <div class="tenna">
+                <img src="/assets/images/quiz/tenna/read.png" draggable="false">
+            </div>
+            <div class="tennaspeech">
+                <div class="tennaspeechbubble">
+                    <div class="tennaspeechtext"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        window.addEventListener("load", function() {
+            var loading = document.querySelector(".loading");
+            if (loading) {
+                loading.style.opacity = "0";
+                setTimeout(function() {
+                    if (loading.parentNode) { loading.parentNode.removeChild(loading) }
+                }, 500);
+            }
+        });
+
+        /*//////////////////////////////////////////////////////////////////////*/
+
+        (function() {
+            var music = document.createElement("audio");
+            music.src = "/assets/audio/quiz.opus";
+            music.preload = "auto";
+            music.loop = true; music.volume = 0.75;
+            music.className = "bgmusic";
+            document.body.appendChild(music);
+            window.bgmusic = music;
+
+            var started = false;
+
+            function playbgmusic() {
+                if (started) return;
+                started = true;
+                var promise = music.play();
+                if (promise && typeof promise.then === "function") {
+                    promise.catch(function() {});
+                }
+            }
+            
+            window.playbgmusic = playbgmusic;
+        })();
+
+        /*//////////////////////////////////////////////////////////////////////*/
+
+        // quiz logic!
+        (function() {
+            var quizdata = [], questionidx = 0;
+            var questionorder = []; var answerresults = [];
+            var typing = false, answerselected = false;
+            var audiotxt = document.querySelector("audio.txt");
+            var audioselect = document.querySelector("audio.select");
+            var elquestiona = document.querySelector(".question a");
+            var elanswers = document.querySelector(".answers");
+            var elimage = document.querySelector(".image");
+            var audiocorrect = null, audioincorrect = null;
+            var eltenna = document.querySelector(".tenna");
+            var eltennaimg = eltenna ? eltenna.querySelector("img") : null;
+            var eltennaspeech = document.querySelector(".tennaspeech");
+            var eltennaspeechtext = eltennaspeech ? eltennaspeech.querySelector(".tennaspeechtext") : null;
+            var tennatyping = false; var tennadialoguetimer = null;
+            var tennadialogueid = 0;
+            var audiotenna = document.querySelector("audio.tennavoice");
+
+            function isquestionvisible() {
+                var el = document.querySelector(".question");
+                if (!el) return false;
+                var style = window.getComputedStyle(el);
+                return style.display !== "none";
+            }
+
+            // BEAUTIUFL INTRO.. okay it's pretty bad compared to the rest of the page
+            var cutscenecomplete = false;
+            var debugskip = false;
+
+            function startcutscene() {
+                if (debugskip) {
+                    var startoverlay = document.querySelector('.startoverlay');
+                    if (startoverlay && startoverlay.parentNode) {
+                        startoverlay.parentNode.removeChild(startoverlay);
+                    }
+                    if (eltenna) {
+                        eltenna.style.display = 'flex';
+                        eltenna.classList.add('visible');
+                    }
+                    if (eltennaimg) {
+                        eltennaimg.src = '/assets/images/quiz/tenna/read.png';
+                        if (eltennaimg.style) {
+                            eltennaimg.style.imageRendering = 'pixelated';
+                        }
+                    }
+                    if (quizdata.length > 0) quizloadquestion(0);
+                    return;
+                }
+                var startoverlay = document.querySelector(".startoverlay");
+                var startoverlaystuff = document.querySelector(".overlaycontent");
+                
+                startoverlaystuff.addEventListener("click", function() {
+                    if (cutscenecomplete) return;
+                    cutscenecomplete = true;
+
+                    if (window.playbgmusic) {
+                        window.playbgmusic();
+                    }
+                    
+                    startoverlaystuff.style.pointerEvents = "none";
+                    startoverlaystuff.style.opacity = "0";
+                    
+                    if (eltenna && eltennaimg) {
+                        eltennaimg.src = "/assets/images/quiz/tenna/tpose.gif";
+                        if (eltennaimg.style) {
+                            eltennaimg.style.imageRendering = "pixelated";
+                        }
+                        
+                        var normalbottom = "6em";
+                        var viewportheight = window.innerHeight;
+                        var tennaheight = 1 * parseFloat(window.getComputedStyle(document.documentElement).fontSize);
+                        var startbottom = viewportheight + tennaheight + "px";
+                        
+                        eltenna.style.display = "flex";
+                        eltenna.style.bottom = startbottom;
+                        eltenna.classList.add("visible", "falling");
+                        
+                        setTimeout(function() {
+                            eltenna.style.bottom = normalbottom;
+                            
+                            setTimeout(function() {
+                                eltenna.classList.remove("falling");
+                                if (eltennaimg) {
+                                    eltennaimg.src = "/assets/images/quiz/tenna/read.png";
+                                    if (eltennaimg.style) {
+                                        eltennaimg.style.imageRendering = "pixelated";
+                                    }
+                                }
+                                setTimeout(function() {
+                                    if (eltennaspeech) {
+                                        eltennaspeech.style.display = "flex";
+                                    }
+                                    if (eltennaspeechtext) {
+                                        eltennaspeechtext.textContent = "";
+                                        tennatypedialogue("Before you proceed, you need to solve a <b>fabulous quiz</b> about Cut the Rope![0.75s] This is a very important procedure.[0.75s] Yeah.", function() {
+                                            setTimeout(function() {
+                                                if (startoverlay) {
+                                                    startoverlay.style.transition = "opacity 0.5s ease-out";
+                                                    startoverlay.style.opacity = "0";
+                                                    setTimeout(function() {
+                                                        if (startoverlay && startoverlay.parentNode) {
+                                                            startoverlay.parentNode.removeChild(startoverlay);
+                                                        }
+                                                        if (quizdata.length > 0) quizloadquestion(0);
+                                                    }, 500);
+                                                }
+                                            }, 100); // before fade out
+                                        }, 1000); // delay after dialogue end
+                                    }
+                                }, 1000); // between tenna landing and yapping
+                            }, 2000);
+                        }, 10);
+                    }
+                });
+            }
+
+            // json loader
+            function quizloaddata() {
+                fetch("quiz.json")
+                .then(function(resp) { return resp.json(); })
+                .then(function(data) {
+                    quizdata = data;
+                    questionorder = [];
+                    answerresults = [];
+                    for (var i = 0; i < quizdata.length; i++) {
+                        questionorder.push(i);
+                    }
+                    for (var i = questionorder.length - 1; i > 0; i--) {
+                        var j = Math.floor(Math.random() * (i + 1));
+                        var temp = questionorder[i];
+                        questionorder[i] = questionorder[j];
+                        questionorder[j] = temp;
+                    }
+                    startcutscene();
+                })
+            }
+
+            // next question
+            function quizloadquestion(idx) {
+                if (idx >= questionorder.length) {
+                    showquizresults();
+                    return;
+                }
+                var actualidx = questionorder[idx];
+                var q = quizdata[actualidx];
+                questionidx = idx;
+                answerselected = false;
+
+                if (elanswers) {
+                    elanswers.innerHTML = "";
+                    elanswers.style.display = "none";
+                    elanswers.classList.remove("flicker", "disabled");
+                }
+
+                answerselected = false;
+
+                if (elimage) {
+                    elimage.style.display = "none";
+                    elimage.style.marginRight = "";
+                    elimage.style.marginLeft = "";
+                    if (q.image) elimage.src = "/assets/images/quiz/pics/" + q.image;
+                }
+                if (eltennaimg) {
+                    if (eltennaimg.style) {
+                        eltennaimg.style.imageRendering = "pixelated";
+                    }
+                    eltennaimg.src = "/assets/images/quiz/tenna/read.png";
+                    setTimeout(function() {
+                        if (eltennaimg && eltennaimg.style) {
+                            eltennaimg.style.imageRendering = "pixelated";
+                        }
+                    }, 0);
+                }
+                if (eltennaspeech) {
+                    eltennaspeech.style.display = "none";
+                }
+                if (eltennaspeechtext) {
+                    eltennaspeechtext.textContent = "";
+                }
+                if (tennadialoguetimer) {
+                    clearTimeout(tennadialoguetimer);
+                    tennadialoguetimer = null;
+                }
+                tennatyping = false;
+                tennadialogueid++;
+
+                if (q.css && elimage) {
+                    if (typeof q.css === "string") {
+                        var cssprops = q.css.split(";");
+                        for (var i = 0; i < cssprops.length; i++) {
+                            var prop = cssprops[i].trim();
+                            if (prop) {
+                                var parts = prop.split(":");
+                                if (parts.length === 2) {
+                                    var pname = parts[0].trim();
+                                    var pval = parts[1].trim();
+                                    pname = pname.replace(/-([a-z])/g, function(g) { return g[1].toUpperCase(); });
+                                    elimage.style[pname] = pval;
+                                }
+                            }
+                        }
+                    } else if (typeof q.css === "object") {
+                        for (var p in q.css) {
+                            elimage.style[p] = q.css[p];
+                        }
+                    }
+                }
+
+                if (elquestiona) elquestiona.textContent = "";
+                
+                quizwaitaudiotype(q.question);
+            }
+
+            // the cool ass typer
+            function quiztypewriter(txt) {
+                if (typing) return;
+                if (!elquestiona || !isquestionvisible()) return;
+                typing = true;
+
+                if (questionidx > 0) {
+                    if (eltennaspeech) {
+                        eltennaspeech.style.display = "flex";
+                    }
+                    if (eltennaimg) {
+                        if (eltennaimg.style) {
+                            eltennaimg.style.imageRendering = "pixelated";
+                        }
+                        eltennaimg.src = "/assets/images/quiz/tenna/read.png";
+                        setTimeout(function() {
+                            if (eltennaimg && eltennaimg.style) {
+                                eltennaimg.style.imageRendering = "pixelated";
+                            }
+                        }, 0);
+                    }
+                    tennatypedialogue("Next question!", function() {
+                        if (eltennaspeech) {
+                            eltennaspeech.style.display = "none";
+                        }
+                    }, 500);
+                }
+
+                elquestiona.textContent = "";
+                if (elanswers) elanswers.style.display = "none";
+                if (elimage) elimage.style.display = "none";
+
+                var idx = 0, word = "", line = "", lines = [];
+                var maxchars = 22;
+
+                function nextchar() {
+                    if (!isquestionvisible()) {
+                        typing = false;
+                        return;
+                    }
+                    if (idx < txt.length) {
+                        var ch = txt[idx];
+                        var isspace = ch === " " || ch === "\n" || ch === "\t";
+                        if (isspace && word.length > 0) {
+                            var separator = line.length > 0 ? " " : "";
+                            var testline = line + separator + word;
+                            if (testline.length > maxchars) {
+                                if (line.length > 0) {
+                                    lines.push(line);
+                                }
+                                line = word;
+                            } else {
+                                line = testline;
+                            }
+                            word = "";
+                        } else if (!isspace) {
+                            word += ch;
+                            if (word.length > maxchars && line.length > 0) {
+                                lines.push(line);
+                                line = "";
+                            }
+                        }
+                        var displayparts = [];
+                        for (var i = 0; i < lines.length; i++) {
+                            if (lines[i].length <= maxchars) {
+                                displayparts.push(lines[i]);
+                            } else {
+                                var part = lines[i].substring(0, maxchars);
+                                displayparts.push(part);
+                            }
+                        }
+                        var currentdisplayline = line;
+                        if (word.length > 0) {
+                            currentdisplayline = line + (line.length > 0 ? " " : "") + word;
+                        }
+                        if (currentdisplayline.length > 0) {
+                            if (currentdisplayline.length > maxchars) {
+                                displayparts.push(currentdisplayline.substring(0, maxchars));
+                            } else {
+                                displayparts.push(currentdisplayline);
+                            }
+                        }
+                        elquestiona.textContent = displayparts.join("\n");
+                        if (audiotxt) {
+                            var a = audiotxt.cloneNode();
+                            a.volume = 0.55;
+                            a.currentTime = 0;
+                            a.play();
+                        }
+                        idx++;
+                        setTimeout(nextchar, 25);
+                    } else {
+                        if (word.length > 0) {
+                            var separator = line.length > 0 ? " " : "";
+                            var linewithword = line + separator + word;
+                            if (linewithword.length > maxchars && line.length > 0) {
+                                lines.push(line);
+                                line = word;
+                            } else {
+                                line = linewithword;
+                            }
+                        }
+                        var finalparts = [];
+                        for (var i = 0; i < lines.length; i++) {
+                            if (lines[i].length > maxchars) {
+                                var part = lines[i].substring(0, maxchars);
+                                finalparts.push(part);
+                                var remainder = lines[i].substring(maxchars).trim();
+                                if (remainder.length > 0) {
+                                    lines[i] = remainder;
+                                    i--;
+                                }
+                            } else {
+                                finalparts.push(lines[i]);
+                            }
+                        }
+                        if (line.length > 0) {
+                            if (line.length > maxchars) {
+                                finalparts.push(line.substring(0, maxchars));
+                                var remainder = line.substring(maxchars).trim();
+                                if (remainder.length > 0) {
+                                    finalparts.push(remainder);
+                                }
+                            } else {
+                                finalparts.push(line);
+                            }
+                        }
+                        elquestiona.textContent = finalparts.join("\n");
+                        typing = false;
+                        quizshowanswers();
+                    }
+                }
+                nextchar();
+            }
+
+            // answers + their (pretty bad) font scaling
+            function quizshowanswers() {
+                var actualidx = questionorder[questionidx];
+                var q = quizdata[actualidx];
+                if (!q || !elanswers) return;
+                elanswers.innerHTML = "";
+                for (var i = 0; i < q.answers.length; i++) {
+                    var answer = q.answers[i];
+                    var a = document.createElement("a");
+                    a.dataset.correct = answer.correct;
+                    a.dataset.index = i;
+                    var heart = document.createElement("img");
+                    heart.className = "heart";
+                    heart.src = "/assets/images/quiz/heartsmall.png";
+                    a.appendChild(heart);
+                    var overlay = document.createElement("img");
+                    overlay.className = "overlay";
+                    a.appendChild(overlay);
+                    a.appendChild(document.createTextNode(answer.text));
+                    a.addEventListener("click", function() {
+                        quizanswerclick(this);
+                    });
+                    elanswers.appendChild(a);
+                }
+
+                elanswers.style.display = "flex"; elanswers.style.visibility = "hidden";
+                if (elimage && q.image) elimage.style.display = "block";
+
+                setTimeout(function() {
+                    var screenel = document.querySelector(".screen");
+                    if (!screenel) {
+                        elanswers.style.visibility = "visible";
+                        return;
+                    }
+                    var pageel = document.querySelector(".page");
+                    var pagefontsize = parseFloat(window.getComputedStyle(pageel).fontSize);
+                    var padding = pagefontsize;
+                    var screenrect = screenel.getBoundingClientRect();
+                    var screenleft = screenrect.left;
+                    var screenright = screenrect.right;
+                    var maxleft = screenleft + padding;
+                    var maxright = screenright - padding;
+                    var maxwidth = maxright - maxleft;
+                    var answerswidth = elanswers.offsetWidth;
+                    var answermaxwidthpercent = answerswidth * 0.67;
+                    var answermaxwidthscreen = maxwidth;
+                    var answermaxwidth = Math.min(answermaxwidthpercent, answermaxwidthscreen);
+                    var allanswers = elanswers.querySelectorAll("a");
+                    var answersfontsize = parseFloat(window.getComputedStyle(elanswers).fontSize);
+
+                    for (var i = 0; i < allanswers.length; i++) {
+                        var answerel = allanswers[i];
+                        answerel.style.fontSize = "";
+                        var tempspan = document.createElement("span");
+                        tempspan.style.visibility = "hidden";
+                        tempspan.style.position = "absolute";
+                        tempspan.style.whiteSpace = "nowrap";
+                        var answerstyle = window.getComputedStyle(answerel);
+                        tempspan.style.font = answerstyle.font;
+                        tempspan.style.fontSize = answerstyle.fontSize;
+                        tempspan.textContent = answerel.textContent;
+                        elanswers.appendChild(tempspan);
+                        var textwidth = tempspan.offsetWidth;
+                        elanswers.removeChild(tempspan);
+                        if (textwidth > answermaxwidth) {
+                            var currentfontsize = parseFloat(answerstyle.fontSize);
+                            var scale = answermaxwidth / textwidth;
+                            var scaledfontsizeem = (currentfontsize * scale) / answersfontsize;
+                            answerel.style.fontSize = scaledfontsizeem + "em";
+
+                            // ough
+                            tempspan = document.createElement("span");
+                            tempspan.style.visibility = "hidden";
+                            tempspan.style.position = "absolute";
+                            tempspan.style.whiteSpace = "nowrap";
+                            tempspan.style.fontFamily = answerstyle.fontFamily;
+                            tempspan.style.fontWeight = answerstyle.fontWeight;
+                            tempspan.style.fontSize = scaledfontsizeem + "em";
+                            tempspan.textContent = answerel.textContent;
+                            elanswers.appendChild(tempspan);
+                            var newtextwidth = tempspan.offsetWidth;
+                            elanswers.removeChild(tempspan);
+                            var iterations = 0;
+                            while (newtextwidth > answermaxwidth && iterations < 5) {
+                                var additionalscale = answermaxwidth / newtextwidth;
+                                scaledfontsizeem = scaledfontsizeem * additionalscale;
+                                answerel.style.fontSize = scaledfontsizeem + "em";
+
+                                // OUGHHH
+                                tempspan = document.createElement("span");
+                                tempspan.style.visibility = "hidden";
+                                tempspan.style.position = "absolute";
+                                tempspan.style.whiteSpace = "nowrap";
+                                tempspan.style.fontFamily = answerstyle.fontFamily;
+                                tempspan.style.fontWeight = answerstyle.fontWeight;
+                                tempspan.style.fontSize = scaledfontsizeem + "em";
+                                tempspan.textContent = answerel.textContent;
+                                elanswers.appendChild(tempspan);
+                                newtextwidth = tempspan.offsetWidth;
+                                elanswers.removeChild(tempspan);
+                                iterations++;
+                            }
+                        }
+                    } elanswers.style.visibility = "visible";
+                }, 10);
+            }
+
+            function quizdisableanswers() {
+                if (elanswers) {
+                    elanswers.classList.add("disabled");
+                    var allas = elanswers.querySelectorAll("a");
+                    for (var i = 0; i < allas.length; i++) {
+                        allas[i].style.pointerEvents = "none";
+                        allas[i].style.cursor = "default";
+                    }
+                }
+            }
+            function quizanswerclick(ael) {
+                if (answerselected) return;
+                answerselected = true;
+                quizdisableanswers();
+
+                if (eltennaimg) {
+                    eltennaimg.style.imageRendering = "pixelated";
+                }
+
+                var correct = ael.dataset.correct === "true";
+                answerresults.push(correct);
+                var actualidx = questionorder[questionidx];
+                var q = quizdata[actualidx];
+                ael.classList.add("selected");
+                ael.style.color = "yellow";
+                var heart = ael.querySelector(".heart");
+                if (heart) heart.src = "/assets/images/quiz/heartsmallhover.png";
+                if (audioselect) {
+                    var a = audioselect.cloneNode();
+                    a.currentTime = 0;
+                    a.play();
+                }
+                setTimeout(function() {
+                    var overlay = ael.querySelector(".overlay");
+                    if (overlay) {
+                        overlay.src = correct ? "/assets/images/quiz/correct.png" : "/assets/images/quiz/incorrect.png";
+                        ael.classList.add("show-overlay");
+                    }
+                    if (correct) {
+                        if (!audiocorrect) {
+                            audiocorrect = new Audio("/assets/audio/won.opus");
+                            audiocorrect.preload = "auto";
+                        }
+                        audiocorrect.currentTime = 0;
+                        audiocorrect.play().catch(function() {});
+                    } else {
+                        if (!audioincorrect) {
+                            audioincorrect = new Audio("/assets/audio/error.opus");
+                            audioincorrect.preload = "auto";
+                        }
+                        audioincorrect.currentTime = 0;
+                        audioincorrect.play().catch(function() {});
+                    }
+                    setTimeout(function() {
+                        var allas = elanswers.querySelectorAll("a");
+                        if (correct) {
+                            for (var i = 0; i < allas.length; i++) {
+                                var aa = allas[i];
+                                if (aa.dataset.correct === "true") {
+                                    aa.classList.add("correct");
+                                    aa.style.color = "yellow";
+                                }
+                            }
+                        } else {
+                            for (var i = 0; i < allas.length; i++) {
+                                var aa = allas[i];
+                                if (aa.dataset.correct === "true") {
+                                    aa.classList.add("correct");
+                                    aa.style.color = "yellow";
+                                } else if (aa === ael) {
+                                    aa.classList.add("incorrect");
+                                    aa.style.color = "red";
+                                }
+                            }
+                        }
+                        elanswers.classList.add("flicker");
+                        setTimeout(function() {
+                            if (elanswers) elanswers.style.display = "none";
+                            if (elimage) elimage.style.display = "none";
+                            if (eltennaimg && eltennaimg.style) {
+                                eltennaimg.style.imageRendering = "pixelated";
+                            }
+                        }, 2000);
+                    }, 0);
+                }, 1000);
+
+                // tenna comments and some effects to make it not awfully bland
+                setTimeout(function() {
+                    var selectedanswer = q.answers[parseInt(ael.dataset.index)];
+                    if (selectedanswer && selectedanswer.dialogue) {
+                        var reaction = selectedanswer.reaction || "read.png";
+                        var dialogue = selectedanswer.dialogue;
+                        var dialogue2 = selectedanswer.dialogue2;
+                        if (eltennaimg) {
+                            if (eltennaimg.style) {
+                                eltennaimg.style.imageRendering = "pixelated";
+                            }
+                            eltennaimg.src = "/assets/images/quiz/tenna/" + reaction;
+                            if (eltennaimg.style) {
+                                eltennaimg.style.imageRendering = "pixelated";
+                            }
+                            if (eltenna) {
+                                eltenna.classList.remove("squish", "squishback");
+                                eltenna.style.transition = "none";
+                                eltenna.style.willChange = "transform";
+                                eltenna.offsetHeight;
+                                eltenna.classList.add("squish");
+                                eltenna.offsetHeight;
+                                setTimeout(function() {
+                                    if (eltenna) {
+                                        eltenna.style.transition = "transform 0.4s ease-out";
+                                        eltenna.classList.remove("squish");
+                                        eltenna.classList.add("squishback");
+                                        setTimeout(function() {
+                                            if (eltenna) {
+                                                eltenna.classList.remove("squishback");
+                                                eltenna.style.transition = "none";
+                                                eltenna.style.willChange = "";
+                                                if (eltennaimg && eltennaimg.style) {
+                                                    eltennaimg.style.imageRendering = "pixelated";
+                                                }
+                                            }
+                                        }, 400);
+                                    }
+                                }, 10);
+                            }
+                        }
+                        if (eltennaspeech) {
+                            eltennaspeech.style.display = "flex";
+                            if (eltennaspeechtext) {
+                                eltennaspeechtext.textContent = "";
+                                tennatypedialogue(dialogue, function() {
+                                    if (dialogue2) {
+                                        setTimeout(function() {
+                                            if (eltennaspeech) eltennaspeech.style.display = "flex";
+                                            if (eltennaspeechtext) {
+                                                eltennaspeechtext.textContent = "";
+                                                tennatypedialogue(dialogue2, function() {
+                                                    quizloadquestion(questionidx + 1);
+                                                }, 2000);
+                                            }
+                                        }, 2000);
+                                    } else {
+                                        quizloadquestion(questionidx + 1);
+                                    }
+                                }, 2000);
+                            }
+                        } else {
+                            setTimeout(function() {
+                                quizloadquestion(questionidx + 1);
+                            }, 2000);
+                        }
+                    } else {
+                        if (eltennaspeech) eltennaspeech.style.display = "none";
+                        if (eltennaspeechtext) eltennaspeechtext.textContent = "";
+                        if (tennadialoguetimer) {
+                            clearTimeout(tennadialoguetimer);
+                            tennadialoguetimer = null;
+                        }
+                        tennatyping = false;
+                        setTimeout(function() {
+                            quizloadquestion(questionidx + 1);
+                        }, 2000);
+                    }
+                }, 2000);
+            }
+
+            // tenna dialogue typer
+            function tennatypedialogue(text, oncomplete, hidedelay) {
+                if (tennatyping) return;
+                tennatyping = true;
+                if (!eltennaspeechtext || !eltennaspeech) {
+                    tennatyping = false;
+                    if (oncomplete) oncomplete();
+                    return;
+                }
+                var dialogueid = ++tennadialogueid;
+                var shouldendimmediately = false;
+
+                function parsedialoguetext(inputtext) {
+                    var tokens = [];
+                    var i = 0;
+                    var currentbold = false, currentitalic = false;
+                    while (i < inputtext.length) {
+                        if (inputtext.substring(i, i + 5) === "[end]") {
+                            tokens.push({ type: "end" });
+                            i += 5;
+                        } else if (inputtext[i] === "[") {
+                            var delaymatch = inputtext.substring(i).match(/^\[(\d+(?:\.\d+)?)s\]/);
+                            if (delaymatch) {
+                                var delayseconds = parseFloat(delaymatch[1]);
+                                tokens.push({ type: "delay", seconds: delayseconds });
+                                i += delaymatch[0].length;
+                                continue;
+                            }
+                            var endidx = inputtext.indexOf("]", i);
+                            if (endidx !== -1) {
+                                var tagcontent = inputtext.substring(i + 1, endidx);
+                                if (tagcontent.startsWith("pose.") || tagcontent.startsWith("sprite.")) {
+                                    var posefile = tagcontent.substring(tagcontent.indexOf(".") + 1);
+                                    if (posefile.endsWith(".png")) {
+                                        tokens.push({ type: "pose", file: posefile });
+                                        i = endidx + 1;
+                } else {
+                                        tokens.push({ type: "char", char: inputtext[i], bold: currentbold, italic: currentitalic });
+                                        i++;
+                                    }
+                                } else if (tagcontent.endsWith(".png")) {
+                                    tokens.push({ type: "pose", file: tagcontent });
+                                    i = endidx + 1;
+                                } else if (tagcontent.startsWith("audio.")) {
+                                    var audiofile = tagcontent.substring(6);
+                                    if (audiofile.endsWith(".opus") || audiofile.endsWith(".mp3")) {
+                                        tokens.push({ type: "audio", file: audiofile });
+                                        i = endidx + 1;
+                                    } else {
+                                        tokens.push({ type: "char", char: inputtext[i], bold: currentbold, italic: currentitalic });
+                                        i++;
+                                    }
+                                } else if (tagcontent.endsWith(".opus") || tagcontent.endsWith(".mp3")) {
+                                    tokens.push({ type: "audio", file: tagcontent });
+                                    i = endidx + 1;
+                                } else {
+                                    tokens.push({ type: "char", char: inputtext[i], bold: currentbold, italic: currentitalic });
+                                    i++;
+                                }
+                            } else {
+                                tokens.push({ type: "char", char: inputtext[i], bold: currentbold, italic: currentitalic });
+                                i++;
+                            }
+                        } else if (inputtext.substring(i, i + 3) === "<b>") {
+                            currentbold = true;
+                            i += 3;
+                        } else if (inputtext.substring(i, i + 4) === "</b>") {
+                            currentbold = false;
+                            i += 4;
+                        } else if (inputtext.substring(i, i + 3) === "<i>") {
+                            currentitalic = true;
+                            i += 3;
+                        } else if (inputtext.substring(i, i + 4) === "</i>") {
+                            currentitalic = false;
+                            i += 4;
+                        } else {
+                            tokens.push({ type: "char", char: inputtext[i], bold: currentbold, italic: currentitalic });
+                            i++;
+                        }
+                    }
+                    return tokens;
+                }
+
+                var tokens = parsedialoguetext(text);
+                var cleantext = "";
+                for (var i = 0; i < tokens.length; i++) {
+                    if (tokens[i].type === "char") {
+                        var char = tokens[i].char;
+                        var wrapped = char;
+                        if (tokens[i].bold) wrapped = "<b>" + wrapped + "</b>";
+                        if (tokens[i].italic) wrapped = "<i>" + wrapped + "</i>";
+                        cleantext += wrapped;
+                    }
+                }
+
+                var bubble = eltennaspeech.querySelector(".tennaspeechbubble");
+                if (bubble) {
+                    eltennaspeech.style.display = "flex";
+                    var tempdiv = document.createElement("div");
+                    tempdiv.style.visibility = "hidden";
+                    tempdiv.style.position = "absolute";
+                    tempdiv.style.whiteSpace = "pre-wrap";
+                    tempdiv.style.wordWrap = "break-word";
+                    var textstyle = window.getComputedStyle(eltennaspeechtext);
+                    tempdiv.style.font = textstyle.font;
+                    tempdiv.style.fontSize = textstyle.fontSize;
+                    tempdiv.style.fontFamily = textstyle.fontFamily;
+                    tempdiv.style.lineHeight = textstyle.lineHeight;
+                    tempdiv.style.textAlign = textstyle.textAlign;
+                    var pagefontsize = parseFloat(window.getComputedStyle(document.querySelector(".page")).fontSize);
+                    var maxcontentwidth = 15 * pagefontsize;
+                    var bubblestyle = window.getComputedStyle(bubble);
+                    var paddingleft = parseFloat(bubblestyle.paddingLeft);
+                    var paddingright = parseFloat(bubblestyle.paddingRight);
+                    var contentwidth = maxcontentwidth - paddingleft - paddingright;
+                    tempdiv.style.width = contentwidth + "px";
+                    tempdiv.innerHTML = cleantext;
+                    document.body.appendChild(tempdiv);
+                    var textwidth = tempdiv.scrollWidth;
+                    var textheight = tempdiv.scrollHeight;
+                    document.body.removeChild(tempdiv);
+                    var paddingtop = parseFloat(bubblestyle.paddingTop);
+                    var paddingbottom = parseFloat(bubblestyle.paddingBottom);
+                    var borderwidth = 2;
+                    var finalwidth = textwidth + paddingleft + paddingright + (borderwidth * 2);
+                    var finalheight = textheight + paddingtop + paddingbottom + (borderwidth * 2);
+                    bubble.style.width = finalwidth + "px";
+                    bubble.style.height = finalheight + "px";
+                }
+
+                eltennaspeechtext.innerHTML = "";
+                var idx = 0;
+                var lastsoundtime = 0;
+                var typingcomplete = false;
+                function nextchar() {
+                    if (dialogueid !== tennadialogueid) return;
+                    if (shouldendimmediately && typingcomplete) {
+                        if (eltennaspeech) eltennaspeech.style.display = "none";
+                        if (oncomplete) oncomplete();
+                        return;
+                    }
+                    if (idx < tokens.length) {
+                        var token = tokens[idx];
+                        if (token.type === "char") {
+                            var char = token.char;
+                            if (char === "<") char = "&lt;";
+                            if (char === ">") char = "&gt;";
+                            var wrapped = char;
+                            if (token.bold) wrapped = "<b>" + wrapped + "</b>";
+                            if (token.italic) wrapped = "<i>" + wrapped + "</i>";
+                            eltennaspeechtext.innerHTML += wrapped;
+                            var now = Date.now();
+                            if (audiotenna && (now - lastsoundtime >= 75)) {
+                                var voicenum = Math.floor(Math.random() * 10);
+                                var voicefile = voicenum === 0 
+                                    ? "/assets/audio/tenna/snd_tv_voice_short.mp3"
+                                    : "/assets/audio/tenna/snd_tv_voice_short_" + voicenum + ".mp3";
+                                var pitch = 0.86 + (Math.random() - 0.5) * 0.35;
+                                var a = audiotenna.cloneNode();
+                                a.src = voicefile;
+                                a.volume = 0.4;
+                                a.currentTime = 0;
+                                a.playbackRate = pitch;
+                                a.play();
+                                lastsoundtime = now;
+                            }
+                        } else if (token.type === "pose") {
+                            if (eltennaimg) {
+                                if (eltennaimg.style) {
+                                    eltennaimg.style.imageRendering = "pixelated";
+                                }
+                                eltennaimg.src = "/assets/images/quiz/tenna/" + token.file;
+                                if (eltennaimg.style) {
+                                    eltennaimg.style.imageRendering = "pixelated";
+                                }
+                                if (eltenna) {
+                                    eltenna.classList.remove("squish", "squishback");
+                                    eltenna.style.transition = "none";
+                                    eltenna.style.willChange = "transform";
+                                    eltenna.offsetHeight;
+                                    eltenna.classList.add("squish");
+                                    eltenna.offsetHeight;
+                                    setTimeout(function() {
+                                        if (eltenna && dialogueid === tennadialogueid) {
+                                            eltenna.style.transition = "transform 0.4s ease-out";
+                                            eltenna.classList.remove("squish");
+                                            eltenna.classList.add("squishback");
+                                            setTimeout(function() {
+                                                if (eltenna && dialogueid === tennadialogueid) {
+                                                    eltenna.classList.remove("squishback");
+                                                    eltenna.style.transition = "none";
+                                                    eltenna.style.willChange = "";
+                                                    if (eltennaimg && eltennaimg.style) {
+                                                        eltennaimg.style.imageRendering = "pixelated";
+                                                    }
+                                                }
+                                            }, 400);
+                                        }
+                                    }, 10);
+                                }
+                            }
+                        } else if (token.type === "audio") {
+                            var audio = new Audio("/assets/audio/" + token.file);
+                            audio.volume = 0.4;
+                            audio.play().catch(function() {});
+                        } else if (token.type === "delay") {
+                            setTimeout(function() {
+                                if (dialogueid === tennadialogueid) {
+                                    idx++;
+                                    nextchar();
+                                }
+                            }, token.seconds * 1000);
+                            return;
+                        } else if (token.type === "end") {
+                            shouldendimmediately = true;
+                        }
+                        idx++;
+                        setTimeout(nextchar, 25);
+                    } else {
+                        if (!typingcomplete && dialogueid === tennadialogueid) {
+                            typingcomplete = true;
+                            tennatyping = false;
+                            if (shouldendimmediately) {
+                                if (eltennaspeech) eltennaspeech.style.display = "none";
+                                if (oncomplete) oncomplete();
+                            } else {
+                                var delay = hidedelay !== undefined ? hidedelay : 4000;
+                                tennadialoguetimer = setTimeout(function() {
+                                    if (dialogueid === tennadialogueid) {
+                                        tennadialoguetimer = null;
+                                        if (eltennaspeech) eltennaspeech.style.display = "none";
+                                        if (oncomplete) oncomplete();
+                                    }
+                                }, delay);
+                            }
+                        }
+                    }
+                }
+                nextchar();
+            }
+
+            // results screen
+            var resultsmessages = [
+                {correct: 0, message: "you are the worst.", sound: "/assets/audio/mammamia.mp3"},
+                {correct: 1, message: "awful", sound: "/assets/audio/crowd/crickets.mp3"},
+                {correct: 5, message: "okay", sound: "/assets/audio/error.opus"},
+                {correct: 7, message: "good!", sound: "/assets/audio/won.opus"},
+                {correct: 9, message: "nice!", sound: "/assets/audio/won.opus"},
+                {correct: 12, message: "genius!!!", sound: "/assets/audio/crowd/cheer.mp3"}
+            ];
+            function showquizresults() {
+                var correctcount = 0;
+                for (var i = 0; i < answerresults.length; i++) {
+                    if (answerresults[i]) correctcount++;
+                }
+                
+                var questionel = document.querySelector(".question");
+                var answersel = document.querySelector(".answers");
+                var imageel = document.querySelector(".image");
+                var musicel = window.bgmusic || document.querySelector("audio.bgmusic");
+                
+                if (questionel) {
+                    questionel.style.transition = "opacity 1s ease-out";
+                    questionel.style.opacity = "0";
+                }
+                if (answersel) {
+                    answersel.style.transition = "opacity 1s ease-out";
+                    answersel.style.opacity = "0";
+                }
+                if (imageel) {
+                    imageel.style.transition = "opacity 1s ease-out";
+                    imageel.style.opacity = "0";
+                }
+                if (musicel) {
+                    var fadeinterval = setInterval(function() {
+                        if (musicel.volume > 0) {
+                            musicel.volume = Math.max(0, musicel.volume - 0.05);
+                        } else {
+                            clearInterval(fadeinterval);
+                            musicel.pause();
+                        }
+                    }, 50);
+                }
+                
+                setTimeout(function() {
+                    var resultsel = document.querySelector(".results");
+                    var resultstextel = document.querySelector(".resultstext");
+                    var resultslineel = document.querySelector(".resultsline");
+                    var resultsa = document.querySelector(".results a");
+                    
+                    if (resultsel) {
+                        resultsel.style.display = "flex";
+                    }
+                    
+                    var bounceaudio = new Audio("/assets/audio/bounce.mp3");
+                    bounceaudio.volume = 0.4;
+                    bounceaudio.play().catch(function() {});
+                    
+                    if (resultstextel) {
+                        resultstextel.style.display = "flex";
+                    }
+                    
+                    setTimeout(function() {
+                        if (resultslineel) {
+                            resultslineel.style.display = "flex";
+                            resultslineel.innerHTML = "";
+                            for (var i = 0; i < answerresults.length; i++) {
+                                var img = document.createElement("img");
+                                img.style.display = "none";
+                                resultslineel.appendChild(img);
+                            }
+                        }
+                        
+                        var resultimages = resultslineel ? resultslineel.querySelectorAll("img") : [];
+                        var imageidx = 0;
+                        
+                        function shownextimage() {
+                            if (imageidx < answerresults.length && imageidx < resultimages.length) {
+                                var iscorrect = answerresults[imageidx];
+                                resultimages[imageidx].src = iscorrect 
+                                    ? "/assets/images/quiz/correct.png" 
+                                    : "/assets/images/quiz/incorrect.png";
+                                resultimages[imageidx].style.display = "block";
+                                
+                                var sound = new Audio(iscorrect ? "/assets/audio/won.opus" : "/assets/audio/error.opus");
+                                sound.preload = "auto";
+                                sound.volume = 0.4;
+                                sound.play().catch(function() {});
+                                
+                                imageidx++;
+                                if (imageidx < answerresults.length && imageidx < resultimages.length) {
+                                    setTimeout(shownextimage, 250);
+                                } else {
+                                    setTimeout(function() {
+                                        var messageobj = null;
+                                        var bestmatch = null;
+                                        for (var i = 0; i < resultsmessages.length; i++) {
+                                            if (resultsmessages[i].correct <= correctcount) {
+                                                if (!bestmatch || resultsmessages[i].correct > bestmatch.correct) {
+                                                    bestmatch = resultsmessages[i];
+                                                }
+                                            }
+                                        }
+                                        messageobj = bestmatch;
+                                        if (!messageobj && resultsmessages.length > 0) {
+                                            messageobj = resultsmessages[resultsmessages.length - 1];
+                                        }
+                                        
+                                        if (resultsa) {
+                                            if (messageobj) {
+                                                resultsa.textContent = messageobj.message;
+                                                var messagesound = new Audio(messageobj.sound);
+                                                messagesound.volume = 0.4;
+                                                messagesound.play().catch(function() {});
+                                            }
+                                            resultsa.style.display = "flex";
+                                            var passed = correctcount > 5;
+                                            try {
+                                                const message = { challenge: "quiz", done: passed, score: correctcount };
+                                                if (window.parent && window.parent !== window) {
+                                                    window.parent.postMessage(message, "*");
+                                                }
+                                                if (window.top && window.top !== window) {
+                                                    window.top.postMessage(message, "*");
+                                                }
+                                            } catch (e) {}
+                                        }
+                                    }, 1000);
+                                }
+                            }
+                        }
+                        
+                        shownextimage();
+                    }, 1000);
+                }, 1000);
+            }
+
+            function quizwaitaudiotype(txt) {
+                setTimeout(function() { quiztypewriter(txt); }, 1);
+            }
+
+            if (debugskip) {
+                window.addEventListener("keydown", function(e) {
+                    if (e.key === "q" || e.key === "Q") {
+                        if (questionidx < questionorder.length) {
+                            while (answerresults.length < questionorder.length) {
+                                answerresults.push(false);
+                            }
+                            showquizresults();
+                        }
+                    }
+                });
+            }
+
+            // startup quiz entry point
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                quizloaddata();
+            } else {
+                window.addEventListener("load", quizloaddata);
+            }
+        })();
+        
+    </script>
+</body>
+</html>

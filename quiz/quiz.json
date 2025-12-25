@@ -1,0 +1,339 @@
+[
+  {
+    "question": "what is this cat's real name?",
+    "image": "soggycat.jpg",
+    "css": "margin-right: 1em",
+    "answers": [
+      {
+        "text": "soggy cat",
+        "correct": false,
+        "dialogue": "...That's not a real name!"
+      },
+      {
+        "text": "caesar shark",
+        "correct": true,
+        "dialogue": "Well, obviously! What an iconic Cut the Rope character!",
+        "reaction": "laugh.gif"
+      },
+      {
+        "text": "ceasar shark",
+        "correct": false,
+        "dialogue": "Ae, not ea...",
+        "reaction": "headdown.png"
+      },
+      {
+        "text": "sharkloid",
+        "correct": false
+      }
+    ]
+  },
+
+  {
+    "question": "what are .xnb files?",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "ctr pc sprites",
+        "correct": true,
+        "dialogue": "Not only sprites, but i'll give you the point!",
+        "reaction": "stand.png"
+      },
+      {
+        "text": "xna game studio files",
+        "correct": true,
+        "dialogue": "We've got a genius over here!",
+        "reaction": "tvtime.png"
+      },
+      {
+        "text": "an awesome format",
+        "correct": false,
+        "dialogue": "[2s] https://www.reddit.com/r/monogame/comments/kb2mvz/the_xnb_file_format_is_horrible [end]"
+      },
+      {
+        "text": "i have no idea",
+        "correct": false,
+        "dialogue": "Well, you <b><i>BETTER!</i></b>",
+        "reaction": "hot.png"
+      }
+    ]
+  },
+
+  {
+    "question": "what is the hardest custom cut the rope level?",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "i will achieve apotheosis",
+        "correct": false,
+        "dialogue": "It's not october anymore, kid!"
+      },
+      {
+        "text": "literally acheron",
+        "correct": false,
+        "dialogue": "Be so for real."
+      },
+      {
+        "text": "faster than a speeding bullet",
+        "correct": true
+      },
+      {
+        "text": "Diddyblud Enstein rizzler of mangoes edgying ring(those who knows💀",
+        "correct": false,
+        "dialogue": "No [no.mp3] [0.5s] No [no.mp3] [0.5s] [hot.png] NO [no.mp3] [0.5s] [stand.png] No [no.mp3]   No [no.mp3]      No [no.mp3]",
+        "reaction": "tweaking.gif"
+      }
+    ]
+  },
+
+  {
+    "question": "what kind of nommie is this?",
+    "image": "someone.webp",
+    "css": "margin-right: 1em",
+    "answers": [
+      {
+        "text": "spinny",
+        "correct": false,
+        "dialogue": "I mean, yes, their propellers spin, but not quite right!",
+        "reaction": "worried.png"
+      },
+      {
+        "text": "plinko",
+        "correct": false,
+        "dialogue": "Keep the [censored.mp3] g%$!%!ng spirit out of the show! We're going to lose sponsors!",
+        "reaction": "hurt.png"
+      },
+      {
+        "text": "blaze",
+        "correct": false
+      },
+      {
+        "text": "roto",
+        "correct": true
+      }
+    ]
+  },
+
+  {
+    "question": "how do you create your own levels for cut the rope?",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "adriandrummis.github.io/CutTheRopeEditor/",
+        "correct": true
+      },
+      {
+        "text": "adriandrumis.github.io/CutTheRopeEditor",
+        "correct": false,
+        "dialogue": "Oops! That's a misspelling![0.5s][point.png] MIKE, cut that out of the broadcast!",
+        "reaction": "worried.png"
+      },
+      {
+        "text": "file://C:/Program Files (x86)/Steam/steamapps/common/CutTheRope/content/maps/1_1.xml",
+        "correct": true,
+        "dialogue": "That's a really,[0.3s] really[0.3s] bad idea."
+      },
+      {
+        "text": "by using candies.monster",
+        "correct": false,
+        "dialogue": "There's no demand for a second editor yet, sorry.",
+        "reaction": "candiesmonster.png"
+      }
+    ]
+  },
+
+  {
+    "question": "cut the rope energy in an educational game made in collab with...",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "gamify",
+        "correct": false
+      },
+      {
+        "text": "legends of learning",
+        "correct": true,
+        "dialogue": "Ball knowledge!",
+        "reaction": "point.png"
+      },
+      {
+        "text": "geoguessr",
+        "correct": false,
+        "dialogue": "[1.5s][worried.png]Let's continue!",
+        "reaction": "headdown.png"
+      },
+      {
+        "text": "kahoot",
+        "correct": false
+      }
+    ]
+  },
+
+  {
+    "question": "What's the smallest gap a candy can fit between?",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "14 units",
+        "correct": true
+      },
+      {
+        "text": "9 units",
+        "correct": false
+      },
+      {
+        "text": "7 units",
+        "correct": false,
+        "dialogue": "7 units from <i>each side</i> of the candy, sure, but not 7 units for the whole gap."
+      },
+      {
+        "text": "20 units",
+        "correct": false
+      }
+    ]
+  },
+
+  {
+    "question": "how many stages does cut the rope blast have?",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "259",
+        "correct": false,
+        "dialogue": "In the oldest versions this was the rough amount of the levels, but time has changed!"
+      },
+      {
+        "text": "500",
+        "correct": false,
+        "dialogue": ""
+      },
+      {
+        "text": "~2480",
+        "correct": true,
+        "dialogue": "Correct! They are tucked away in a /test/ folder of the Unity project and are 512mb of pure json![0.5s][worried.png][0.5s] Ouch!",
+        "reaction": "tvtime.png"
+      },
+      {
+        "text": "~3000",
+        "correct": false
+      }
+    ]
+  },
+
+  {
+    "question": "what tag should you apply to such level editor suggestion?",
+    "image": "request.png",
+    "css": "margin-right: 1em",
+    "answers": [
+      {
+        "text": "approved",
+        "correct": false,
+        "dialogue": "Absolutely never mark this as approved."
+      },
+      {
+        "text": "denied",
+        "correct": true
+      },
+      {
+        "text": "SHUT UPPPP",
+        "correct": true,
+        "dialogue": "Sometimes a little bit of [hot.png]TOXICITY [whisper.png]is necessary.",
+        "reaction": "whisper.png"
+      },
+      {
+        "text": "already a feature",
+        "correct": false
+      }
+    ]
+  },
+
+  {
+    "question": "how many boxes exist in the ds version of cut the rope?",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "5",
+        "correct": true,
+        "dialogue": "It's kind of...[0.7s] 𝓃[0.25s]𝒾[0.25s]𝒸[0.25s]𝒽[0.25s]𝑒"
+      },
+      {
+        "text": "24",
+        "correct": false,
+        "dialogue": "...Where are you getting these numbers from?",
+        "reaction": "worried.png"
+      },
+      {
+        "text": "3",
+        "correct": false,
+        "dialogue": "Come on, it's not THAT bad."
+      },
+      {
+        "text": "12",
+        "correct": false
+      }
+    ]
+  },
+
+  {
+    "question": "what domain are zeptolab ads served from?",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "bms.zeptodev.net",
+        "correct": false
+      },
+      
+      {
+        "text": "zeptojs.com/zepto.min.js",
+        "correct": false,
+        "dialogue": "Wrong one, kid! Though, they did use this library in the Famobi build."
+      },
+      {
+        "text": "bms.zeptolab.com",
+        "correct": true
+      },
+      {
+        "text": "my ASS",
+        "correct": false,
+        "dialogue": "[shocked.png][/crowd/gasp.mp3]"
+      }
+    ]
+  },
+
+  {
+    "question": "[X] browser partnered with zeptolab to port the game to web.",
+    "image": null,
+    "css": null,
+    "answers": [
+      {
+        "text": "netscape",
+        "correct": false
+      },
+      {
+        "text": "internet explorer",
+        "correct": true,
+        "dialogue": "It only had 9 levels per box, but it also had an exclusive Pinned Box with bouncing platforms!",
+        "reaction": "yay.png"
+      },
+      {
+        "text": "firefox",
+        "correct": false,
+        "dialogue": "(This line has been redacted due to recent statements from the CEO.)[/crowd/laughter.mp3]",
+        "reaction": "whisper.png"
+      },
+      {
+        "text": "opera gx",
+        "correct": false,
+        "dialogue": "[hellnaw.mp3]Hell no!",
+        "reaction": "hurt.png"
+      }
+    ]
+  }
+]

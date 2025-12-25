@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="assets/images/recaptcha.png">
+    <title>reCAPTCHA</title>
+    
+    <!-- literally the recaptcha style stolen from google's servers 
+         (but slightly cleaned up) -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style type="text/css">
+
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal; font-weight: 400;
+          src: url("assets/fonts/roboto.woff2") format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+        @font-face {
+          font-family: 'Roboto';
+          font-style: normal; font-weight: 500;
+          src: url("assets/fonts/roboto2.woff2") format('woff2');
+          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* there is a ton of dash-separated classes and ids below because
+           idk which ones are taking stuff from stolenstyle.css and which do not, so
+           it's a bit unme-like */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Roboto', helvetica, arial, sans-serif;
+            overflow-x: hidden;
+        }
+        #captcha-container {position: relative}
+        .rc-anchor-checkbox-holder {position: relative}
+        
+        #rc-imageselect {
+            position: fixed;
+            z-index: 2000000000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.2);
+            min-width: 400px;
+            max-width: 90vw;
+        }
+        
+        #rc-imageselect.visible {opacity: 1; visibility: visible}
+        .recaptcha-checkbox-spinner {display: none !important}
+        .recaptcha-checkbox-checkmark {display: none}
+        .recaptcha-checkbox-checked .recaptcha-checkbox-checkmark {display: block}
+        #rc-anchor-container {position: relative !important}
+        
+        .rc-anchor-normal-footer {
+            position: absolute !important;
+            top: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            display: inline-block !important;
+            height: 74px !important;
+            vertical-align: top !important;
+            width: 60px !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+        }
+        div.rc-anchor-logo-portrait {
+            position: absolute;
+            right: 12px;
+        }
+        
+        .rc-anchor-pt {
+            position: absolute !important;
+            bottom: 5px !important;
+            right: 0 !important;
+            margin: 2px 11px 0 0 !important;
+            padding-right: 2px !important;
+            font-size: 8px !important;
+        }
+        #recaptcha-verify-button:disabled {
+            filter: grayscale(1);
+            opacity: 0.5;
+            cursor: default;
+        }
+        
+        .rc-anchor-content {
+            display: flex !important;
+            align-items: center !important;
+            position: relative !important;
+            height: 74px !important;
+            width: 230px !important;
+            padding-right: 70px !important;
+            box-sizing: border-box !important;
+        }
+        div.rc-anchor-content > div:nth-child(2) > div {
+            display: flex !important;
+            align-items: center !important;
+            position: relative !important;
+            height: 74px !important;
+            width: 230px !important;
+            padding-right: 70px !important;
+            box-sizing: border-box !important;
+        }
+        
+        .rc-anchor-content .rc-inline-block {
+            display: flex !important;
+            align-items: center !important;
+            height: 100% !important;
+        }
+        
+        .rc-anchor-center-container {
+            display: table !important;
+            height: 100% !important;
+            width: 100% !important;
+        }
+        
+        .rc-anchor-center-item {
+            display: table-cell !important;
+            vertical-align: middle !important;
+        }
+        
+        .rc-anchor-checkbox-label {
+            display: inline-block !important;
+            vertical-align: middle !important;
+            line-height: 17px !important;
+            white-space: nowrap !important;
+        }
+        
+        #challenge-iframe-container {
+            width: 100%;
+            height: 400px;
+            position: relative;
+            background-color: #fff;
+            overflow: hidden;
+        }
+        #challenge-iframe-container.fullscreen-active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 2147483646;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #challenge-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        } 
+        #challenge-iframe[src] {display: block}
+        #challenge-iframe.loaded {opacity: 1}
+        
+        #challenge-iframe-container.game-iframe {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #challenge-iframe-container.game-iframe #challenge-iframe {
+            transform: scale(0.5);
+            transform-origin: top left;
+            width: 200%; height: 200%;
+            position: absolute;
+            top: 0; left: 0;
+            margin-top: 0; margin-left: 0;
+        }
+        #challenge-iframe-container.fullscreen-active #challenge-iframe {
+            transform: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+        }
+        .fullscreen-exit-button {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            width: 48px;
+            height: 48px;
+            opacity: 0.8;
+            display: none;
+            border-radius: 4px;
+            z-index: 2147483647;
+            mix-blend-mode: difference;
+            filter: invert(1);
+            background-color: transparent;
+            border: 0;
+        }
+        #challenge-iframe-container.fullscreen-active .fullscreen-exit-button {
+            display: block;
+        }
+        
+        .recaptcha-checkbox-unchecked:hover .recaptcha-checkbox-border {
+            border-color: #929292 !important;
+            background-color: #ffffff !important;
+        }
+        .recaptcha-checkbox-unchecked:active .recaptcha-checkbox-border,
+        .recaptcha-checkbox-unchecked.recaptcha-checkbox-active .recaptcha-checkbox-border {
+            background-color: #ebebeb !important;
+            border-color: #444 !important;
+        }
+    </style>
+</head>
+<body>
+    <div id="captcha-container">
+        <div id="rc-anchor-container" class="rc-anchor rc-anchor-normal rc-anchor-light">
+            
+            <div class="rc-anchor-error-msg-container" style="display:none">
+                <span class="rc-anchor-error-msg" aria-hidden="true"></span>
+            </div>
+            
+            <div class="rc-anchor-content">
+                <div class="rc-inline-block">
+                    <div class="rc-anchor-center-container">
+                        <div class="rc-anchor-center-item rc-anchor-checkbox-holder">
+                            <span class="recaptcha-checkbox goog-inline-block recaptcha-checkbox-unchecked rc-anchor-checkbox" 
+                                  role="checkbox" 
+                                  aria-checked="false" 
+                                  id="recaptcha-anchor" 
+                                  tabindex="0" 
+                                  dir="ltr" 
+                                  aria-labelledby="recaptcha-anchor-label">
+                                <div class="recaptcha-checkbox-border" role="presentation"></div>
+                                <div class="recaptcha-checkbox-borderAnimation" role="presentation"></div>
+                                <div class="recaptcha-checkbox-spinner" role="presentation">
+                                    <div class="recaptcha-checkbox-spinner-overlay"></div>
+                                </div>
+                                <div class="recaptcha-checkbox-checkmark" role="presentation"></div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="rc-inline-block">
+                    <div class="rc-anchor-center-container">
+                        <label class="rc-anchor-center-item rc-anchor-checkbox-label" 
+                               aria-hidden="true" 
+                               role="presentation" 
+                               id="recaptcha-anchor-label">
+                            <span aria-live="polite" aria-labelledby="recaptcha-accessible-status"></span>
+                            I am not a robot
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="rc-anchor-normal-footer">
+                <div class="rc-anchor-logo-portrait" aria-hidden="true" role="presentation">
+                    <div class="rc-anchor-logo-img rc-anchor-logo-img-portrait"></div>
+                    <div class="rc-anchor-logo-text">reCAPTCHA</div>
+                </div>
+                <div class="rc-anchor-pt">
+                    <a href="https://www.google.com/intl/en/policies/privacy/" target="_blank">Privacy</a>
+                    <span aria-hidden="true" role="presentation"> - </span>
+                    <a href="https://www.google.com/intl/en/policies/terms/" target="_blank">Terms</a>
+                </div>
+            </div>
+        </div>
+        
+        <div id="rc-imageselect" aria-modal="true" role="dialog">
+            <div class="rc-imageselect-response-field"></div>
+            <span class="rc-imageselect-tabloop-begin" tabindex="0"></span>
+            
+            <div class="rc-imageselect-payload">
+                <div class="rc-imageselect-instructions">
+                    <div class="rc-imageselect-desc-wrapper">
+                        <div class="rc-imageselect-desc-no-canonical" style="width: 352px; font-size: 16px;">
+                        </div>
+                    </div>
+                    <div class="rc-imageselect-progress"></div>
+                </div>
+                
+                <div class="rc-imageselect-challenge">
+                    <div id="challenge-iframe-container">
+                        <iframe id="challenge-iframe"></iframe>
+                    </div>
+                </div>
+                
+                <div class="rc-imageselect-incorrect-response" style="display:none">Please try again</div>
+                <div aria-live="polite">
+                    <div class="rc-imageselect-error-select-more" style="display:none">Please select all matching images.</div>
+                    <div class="rc-imageselect-error-dynamic-more" style="display:none">Please also check the new images.</div>
+                    <div class="rc-imageselect-error-select-something" style="display:none">Please select around the object, or reload if there are none.</div>
+                </div>
+            </div>
+            
+            <div class="rc-footer">
+                <div class="rc-separator"></div>
+                <div class="rc-controls">
+                    <div class="primary-controls">
+                        <div class="rc-buttons">
+                            <div class="button-holder help-button-holder">
+                                <button class="rc-button goog-inline-block rc-button-help" 
+                                        value="" 
+                                        id="recaptcha-help-button" 
+                                        tabindex="0"></button>
+                            </div>
+                            <div class="button-holder audio-button-holder">
+                                <button class="rc-button goog-inline-block rc-button-audio"
+                                        value="" 
+                                        id="recaptcha-audio-button" 
+                                        tabindex="0"></button>
+                            </div>
+                        </div>
+                        <div class="verify-button-holder" id="verify-button-container">
+                            <button class="rc-button-default goog-inline-block" 
+                                    value="" 
+                                    id="recaptcha-verify-button" 
+                                    tabindex="0">Verify</button>
+                        </div>
+                    </div>
+                    <div class="rc-challenge-help" style="display:none" tabindex="0"></div>
+                </div>
+            </div>
+            
+            <span class="rc-imageselect-tabloop-end" tabindex="0"></span>
+        </div>
+    </div>
+    
+    <script>
+        (function() {
+            let currentiframeindex = 0;
+
+            const iframesources = [
+                "game/index.html",
+                "quiz/index.html",
+                "seal.html"
+            ];
+
+            const checkbox = document.getElementById("recaptcha-anchor");
+            const popup = document.getElementById("rc-imageselect");
+            const challengeiframe = document.getElementById("challenge-iframe");
+            const iframecontainer = document.getElementById("challenge-iframe-container");
+            const audiobutton = document.getElementById("recaptcha-audio-button");
+            const verifybuttoncontainer = document.getElementById("verify-button-container");
+            const helpbutton = document.getElementById("recaptcha-help-button");
+
+            const exitfullscreenbutton = document.createElement("button");
+            exitfullscreenbutton.type = "button";
+            exitfullscreenbutton.className = "rc-button goog-inline-block rc-button-help fullscreen-exit-button";
+            exitfullscreenbutton.setAttribute("aria-label", "Exit fullscreen");
+            iframecontainer.appendChild(exitfullscreenbutton);
+
+            checkbox.addEventListener("mousedown", function() {
+                if (this.classList.contains("recaptcha-checkbox-unchecked")) {
+                    this.classList.add("recaptcha-checkbox-active");
+                }
+            });
+
+            checkbox.addEventListener("mouseup", function() {
+                this.classList.remove("recaptcha-checkbox-active");
+            });
+
+            checkbox.addEventListener("mouseleave", function() {
+                this.classList.remove("recaptcha-checkbox-active");
+            });
+
+            function closepopup() {
+                challengeiframe.classList.remove("loaded");
+                challengeiframe.style.display = "none";
+
+                exitfullscreen();
+                popup.classList.remove("visible");
+
+                setTimeout(function() {
+                    challengeiframe.src = "";
+                    challengeiframe.classList.remove("loaded");
+                }, 300);
+            }
+
+            document.addEventListener("click", function(event) {
+                if (popup.classList.contains("visible")) {
+                    const isclickinsidepopup = popup.contains(event.target);
+                    const isclickoncheckbox = checkbox.contains(event.target);
+
+                    if (!isclickinsidepopup && !isclickoncheckbox) {
+                        closepopup();
+                    }
+                }
+            });
+
+            checkbox.addEventListener("click", function(event) {
+                event.stopPropagation();
+                if (this.classList.contains("recaptcha-checkbox-unchecked")) {
+                    if (!popup.classList.contains("visible")) {
+                        currentiframeindex = 0;
+                    }
+
+                    positionpopup();
+                    popup.classList.add("visible");
+                    loadiframe(currentiframeindex);
+                }
+            });
+
+            window.addEventListener("resize", function() {
+                if (popup.classList.contains("visible")) {
+                    positionpopup();
+                }
+            });
+
+            audiobutton.addEventListener("click", function(event) {
+                event.stopPropagation();
+                currentiframeindex = (currentiframeindex + 1) % 3;
+                loadiframe(currentiframeindex);
+            });
+
+            function isfullscreenactive() {
+                return document.fullscreenElement === iframecontainer || iframecontainer.classList.contains("fullscreen-active");
+            }
+
+            function showfullscreenui(active) {
+                iframecontainer.classList.toggle("fullscreen-active", active);
+            }
+
+            function enterfullscreen() {
+                if (iframecontainer.requestFullscreen) {
+                    iframecontainer.requestFullscreen();
+                } else {
+                    showfullscreenui(true);
+                }
+            }
+
+            function exitfullscreen() {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                }
+                showfullscreenui(false);
+            }
+
+            function handlefullscreenchange() {
+                const active = isfullscreenactive();
+                showfullscreenui(active);
+                if (!active && popup.classList.contains("visible")) {
+                    positionpopup();
+                    setTimeout(positionpopup, 50);
+                }
+            }
+
+            document.addEventListener("fullscreenchange", handlefullscreenchange);
+            document.addEventListener("webkitfullscreenchange", handlefullscreenchange);
+            document.addEventListener("mozfullscreenchange", handlefullscreenchange);
+            document.addEventListener("MSFullscreenChange", handlefullscreenchange);
+
+            helpbutton.addEventListener("click", function(event) {
+                event.stopPropagation();
+                if (isfullscreenactive()) {
+                    exitfullscreen();
+                } else {
+                    enterfullscreen();
+                }
+            });
+
+            exitfullscreenbutton.addEventListener("click", function(event) {
+                event.stopPropagation();
+                exitfullscreen();
+            });
+
+            popup.addEventListener("click", function(event) {
+                event.stopPropagation();
+            });
+
+            function positionpopup() {
+                const wasvisible = popup.classList.contains("visible");
+                if (!wasvisible) {
+                    popup.style.visibility = "hidden";
+                    popup.style.opacity = "0";
+                    popup.style.display = "block";
+                }
+
+                const checkboxrect = checkbox.getBoundingClientRect();
+                const popuprect = popup.getBoundingClientRect();
+                const viewportwidth = window.innerWidth;
+                const viewportheight = window.innerHeight;
+
+                let left = checkboxrect.right + 10;
+                let top = checkboxrect.top + (checkboxrect.height / 2) - (popuprect.height / 2);
+
+                if (left + popuprect.width > viewportwidth) {
+                    left = checkboxrect.left - popuprect.width - 10;
+                    if (left < 0) {
+                        left = 10;
+                        popup.style.maxWidth = (viewportwidth - 20) + "px";
+                    }
+                } else {
+                    popup.style.maxWidth = "";
+                }
+
+                if (top < 10) {
+                    top = 10;
+                } else if (top + popuprect.height > viewportheight - 10) {
+                    top = viewportheight - popuprect.height - 10;
+                    if (top < 10) top = 10;
+                }
+
+                popup.style.left = left + "px";
+                popup.style.top = top + "px";
+
+                if (!wasvisible) {
+                    popup.style.display = "";
+                    popup.style.visibility = "";
+                    popup.style.opacity = "";
+                }
+            }
+
+            function loadiframe(index) {
+                const container = document.getElementById("challenge-iframe-container");
+                const descelement = document.querySelector(".rc-imageselect-desc-no-canonical");
+
+                const iframedescriptions = [
+                    "Beat this <strong style=\"font-size:28px;\">fangame</strong> <a style=\"font-size:0.75em;opacity:0.5;\">(shift to jump, z to shoot. press skip if on mobile)</a>",
+                    "Solve this <strong style=\"font-size:28px;background-image:url('assets/images/quiz.png');background-size:contain;background-repeat:no-repeat;background-position:left;width:4em;height:1.7em;text-align:left;vertical-align:middle;\"></strong><a style=\"font-size:0.75em;opacity:0.5;display:flex;padding:0!important\">(get 5 correct to beat)</a>",
+                    "Watch this <strong style=\"font-size:28px;\">video</strong>"
+                ];
+
+                if (descelement) {
+                    descelement.innerHTML = iframedescriptions[index] || iframedescriptions[0];
+                }
+
+                challengeiframe.classList.remove("loaded");
+                challengeiframe.style.display = "none";
+
+                if (index === 0) {
+                    container.classList.add("game-iframe");
+                } else {
+                    container.classList.remove("game-iframe");
+                }
+                if (index === 2) {
+                    verifybuttoncontainer.style.display = "none";
+                } else {
+                    verifybuttoncontainer.style.display = "block";
+                }
+
+                challengeiframe.src = iframesources[index];
+                challengeiframe.style.display = "block";
+
+                challengeiframe.onload = function() {
+                    challengeiframe.classList.add("loaded");
+                    setTimeout(positionpopup, 100);
+                };
+            }
+
+            const verifybutton = document.getElementById("recaptcha-verify-button");
+            verifybutton.disabled = true;
+
+            let gamedone = false;
+            let quizdone = false;
+
+            function updateVerifyState() {
+                verifybutton.disabled = !(gamedone || quizdone);
+            }
+
+            window.addEventListener("message", function(event) {
+                const data = event.data || {};
+                if (!data || typeof data !== "object") return;
+                if (data.challenge === "game" || data.challenge === "quiz") {
+                    console.log("challenge message:", data);
+                }
+                if (data.challenge === "game" && data.done) {
+                    gamedone = true;
+                    console.log("enabling the verify button!");
+                    updateVerifyState();
+                } else if (data.challenge === "quiz" && data.done) {
+                    quizdone = true;
+                    console.log("enabling the verify button!");
+                    updateVerifyState();
+                }
+            }, false);
+
+            verifybutton.addEventListener("click", function() {
+                if (verifybutton.disabled) return;
+
+                checkbox.classList.remove("recaptcha-checkbox-unchecked");
+                checkbox.classList.add("recaptcha-checkbox-checked");
+                checkbox.setAttribute("aria-checked", "true");
+
+                const checkmark = checkbox.querySelector(".recaptcha-checkbox-checkmark");
+                if (checkmark) {
+                    checkmark.style.display = "block";
+                }
+
+                closepopup();
+                setTimeout(function() {
+                    window.location.href = "/site";
+                }, 2000);
+            });
+            popup.classList.remove("visible");
+        })();
+    </script>
+</body>
+</html>

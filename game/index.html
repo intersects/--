@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta charset="utf-8"/>
+        <meta http-equiv="pragma" content="no-cache"/>
+        <title>om nom needle</title>
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                height: 100%;
+            }
+            body {
+                background: black;
+                color: #cccccc;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+            canvas {
+                image-rendering: optimizeSpeed;
+                -webkit-interpolation-mode: nearest-neighbor;
+                -ms-touch-action: none;
+                touch-action: none;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                max-width: 100vw;
+                max-height: 100vh;
+                width: 100%;
+                height: auto;
+            }
+            :-webkit-full-screen #canvas {
+                width: 100%;
+                height: 100%;
+            }
+            :-webkit-full-screen {
+                width: 100%;
+                height: 100%;
+            }
+            div.gm4html5_div_class {
+                margin: 0px;
+                padding: 0px;
+                border: 0px;
+            }
+            div.gm4html5_login {
+                padding: 20px;
+                position: absolute;
+                border: solid 2px #000000;
+                background-color: #404040;
+                color:#00ff00;
+                border-radius: 15px;
+                box-shadow: #101010 20px 20px 40px;
+            }
+            div.gm4html5_cancel_button {
+                float: right;
+            }
+            div.gm4html5_login_button {
+                float: left;
+            }
+            div.gm4html5_login_header {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="gm4html5_div_class" id="gm4html5_div_id">
+            <canvas id="canvas" width="800" height="608" >
+                <p>Your browser is doodoo.</p>
+            </canvas>
+        </div>
+        <script type="text/javascript" src="TROJAN/Not Another Needle Engine.js?cachebust=777534380"></script>
+        <script>
+            window.onload = function() {
+                if (typeof GameMaker_Init === "function") {
+                    GameMaker_Init();
+                }
+                let notified = false;
+                function notifyParent() {
+                    if (notified) return;
+                    notified = true;
+                    const message = { challenge: "game", done: true };
+                    try {
+                        if (window.parent && window.parent !== window) {
+                            window.parent.postMessage(message, "*");
+                        }
+                        if (window.top && window.top !== window) {
+                            window.top.postMessage(message, "*");
+                        }
+                    } catch (e) {}
+                }
+                try {
+                    const originalLog = console.log;
+                    console.log = function(...args) {
+                        try {
+                            const text = args.join(" ");
+                            if (text.indexOf("done!!!!") !== -1) {
+                                notifyParent();
+                            }
+                        } catch (e) {}
+                        return originalLog.apply(console, args);
+                    };
+                } catch (e) {}
+            };
+        </script>
+    </body>
+</html>
